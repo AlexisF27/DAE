@@ -6,6 +6,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @NamedQueries({
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
                 query = "SELECT c FROM Cliente c ORDER BY c.nome" // JPQL
         ) })
 
-public class Cliente {
+public class Cliente implements Serializable {
     @Id
     protected String id;
     @NotNull
