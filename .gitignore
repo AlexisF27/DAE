@@ -15,4 +15,5 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 .idea
 .DS_store
+projeto.iml
 # End of https://www.toptal.com/developers/gitignore/api/maven
