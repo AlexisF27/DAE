@@ -14,9 +14,7 @@ public class ConfigBean {
     @PostConstruct
     public void populateDB(){
         System.out.println("Hello Java EE!");
-        clienteBean.create("1","Alexis","Leiria", "alexis@mail.pt",110000000);
-
-
+        clienteBean.create("1","Alexis","Leiria", "alexis@mail.pt","110000000");
 
     }
 }

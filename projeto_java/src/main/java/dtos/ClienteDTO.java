@@ -7,12 +7,12 @@ public class ClienteDTO implements Serializable {
     private String nome;
     private String morada;
     private String mail;
-    private double pessoaContacto;
+    private String pessoaContacto;
 
     public ClienteDTO() {
     }
 
-    public ClienteDTO(String id, String nome, String morada, String mail, double pessoaContacto) {
+    public ClienteDTO(String id, String nome, String morada, String mail, String pessoaContacto) {
         this.id = id;
         this.nome = nome;
         this.morada = morada;
@@ -52,11 +52,11 @@ public class ClienteDTO implements Serializable {
         this.mail = mail;
     }
 
-    public double getPessoaContacto() {
+    public String getPessoaContacto() {
         return pessoaContacto;
     }
 
-    public void setPessoaContacto(double pessoaContacto) {
+    public void setPessoaContacto(String pessoaContacto) {
         this.pessoaContacto = pessoaContacto;
     }
 }

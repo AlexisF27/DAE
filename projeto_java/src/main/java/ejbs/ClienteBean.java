@@ -14,7 +14,7 @@ public class ClienteBean {
     @PersistenceContext
     EntityManager em;
 
-    public void create(String id, String nome,String morada, String mail, double pessoaContacto){
+    public void create(String id, String nome,String morada, String mail, String pessoaContacto){
         Cliente cliente = em.find(Cliente.class,id);
         cliente = new Cliente(id,nome,morada,mail,pessoaContacto);
         em.persist(cliente);

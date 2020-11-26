@@ -7,6 +7,8 @@ import javax.persistence.NamedQuery;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.sql.Array;
+import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -25,14 +27,15 @@ public class Cliente implements Serializable {
     @Email
     @NotNull
     protected String mail;
+
     @NotNull
-    protected double pessoaContacto;
+    protected String pessoaContacto;
 
     public Cliente() {
 
     }
 
-    public Cliente(String id, @NotNull String nome, @NotNull String morada, @Email @NotNull String mail, @NotNull double pessoaContacto) {
+    public Cliente(String id, @NotNull String nome, @NotNull String morada, @Email @NotNull String mail, @NotNull String pessoaContacto) {
         this.id = id;
         this.nome = nome;
         this.morada = morada;
@@ -42,11 +45,11 @@ public class Cliente implements Serializable {
 
 
 
-    public double getPessoaContacto() {
+    public String getPessoaContacto() {
         return pessoaContacto;
     }
 
-    public void setPessoaContacto(double pessoaContacto) {
+    public void setPessoaContacto(String pessoaContacto) {
         this.pessoaContacto = pessoaContacto;
     }
 
@@ -78,7 +81,6 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    @Id
     public String getId() {
         return id;
     }
