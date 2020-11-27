@@ -3,7 +3,7 @@ package dtos;
 import java.io.Serializable;
 
 public class ClienteDTO implements Serializable {
-    private String id;
+    private int id;
     private String nome;
     private String morada;
     private String mail;
@@ -12,7 +12,7 @@ public class ClienteDTO implements Serializable {
     public ClienteDTO() {
     }
 
-    public ClienteDTO(String id, String nome, String morada, String mail, String pessoaContacto) {
+    public ClienteDTO(int id, String nome, String morada, String mail, String pessoaContacto) {
         this.id = id;
         this.nome = nome;
         this.morada = morada;
@@ -20,11 +20,11 @@ public class ClienteDTO implements Serializable {
         this.pessoaContacto = pessoaContacto;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

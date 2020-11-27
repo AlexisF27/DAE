@@ -10,11 +10,17 @@ import javax.ejb.Startup;
 public class ConfigBean {
     @EJB
     ClienteBean clienteBean;
+    @EJB
+    ProjetoBean projetoBean;
 
     @PostConstruct
     public void populateDB(){
         System.out.println("Hello Java EE!");
-        clienteBean.create("1","Alexis","Leiria", "alexis@mail.pt","110000000");
+
+        //Clientes
+        clienteBean.create(1,"Alexis","Leiria", "alexis@mail.pt","110000000");
+        //Projetos
+        projetoBean.create(1,"PrimerProjeto",1);
 
     }
 }
