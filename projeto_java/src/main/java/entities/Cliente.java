@@ -30,8 +30,14 @@ public class Cliente implements Serializable {
     @NotNull
     protected String mail;
 
+    @Embedded
     @NotNull
-    protected String pessoaContacto;
+    @AttributeOverrides({
+            @AttributeOverride( name = "nome", column = @Column(name = "nome_pessoa_contacto")),
+            @AttributeOverride( name = "email", column = @Column(name = "email_pessoa_contacto")),
+            @AttributeOverride( name = "telefone", column = @Column(name = "telefone_pessoa_contacto"))
+    })
+    protected PessoaContacto pessoaContacto;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private Set<Projeto> projetos;
@@ -40,7 +46,7 @@ public class Cliente implements Serializable {
 
     }
 
-    public Cliente(int id, @NotNull String nome, @NotNull String morada, @Email @NotNull String mail, @NotNull String pessoaContacto) {
+    public Cliente(int id, @NotNull String nome, @NotNull String morada, @Email @NotNull String mail,@NotNull PessoaContacto pessoaContacto) {
         this.id = id;
         this.nome = nome;
         this.morada = morada;
@@ -57,13 +63,11 @@ public class Cliente implements Serializable {
         projetos.remove(projeto);
     }
 
-
-
-    public String getPessoaContacto() {
+    public PessoaContacto getPessoaContacto() {
         return pessoaContacto;
     }
 
-    public void setPessoaContacto(String pessoaContacto) {
+    public void setPessoaContacto(PessoaContacto pessoaContacto) {
         this.pessoaContacto = pessoaContacto;
     }
 

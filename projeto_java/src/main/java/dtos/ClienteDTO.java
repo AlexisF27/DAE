@@ -1,5 +1,7 @@
 package dtos;
 
+import entities.PessoaContacto;
+
 import java.io.Serializable;
 
 public class ClienteDTO implements Serializable {
@@ -7,12 +9,12 @@ public class ClienteDTO implements Serializable {
     private String nome;
     private String morada;
     private String mail;
-    private String pessoaContacto;
+    private PessoaContacto pessoaContacto;
 
     public ClienteDTO() {
     }
 
-    public ClienteDTO(int id, String nome, String morada, String mail, String pessoaContacto) {
+    public ClienteDTO(int id, String nome, String morada, String mail, PessoaContacto pessoaContacto) {
         this.id = id;
         this.nome = nome;
         this.morada = morada;
@@ -52,11 +54,11 @@ public class ClienteDTO implements Serializable {
         this.mail = mail;
     }
 
-    public String getPessoaContacto() {
+    public PessoaContacto getPessoaContacto() {
         return pessoaContacto;
     }
 
-    public void setPessoaContacto(String pessoaContacto) {
+    public void setPessoaContacto(PessoaContacto pessoaContacto) {
         this.pessoaContacto = pessoaContacto;
     }
 }
