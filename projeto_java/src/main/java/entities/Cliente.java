@@ -1,16 +1,18 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.sql.Array;
-import java.util.List;
+import java.security.Provider;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
+@Table(name="CLIENTES",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"NOME","MORADA","MAIL","PESSOA_CONTACTO"})
+)
 @NamedQueries({
         @NamedQuery(
                 name = "getAllClientes",
@@ -19,7 +21,7 @@ import java.util.List;
 
 public class Cliente implements Serializable {
     @Id
-    protected String id;
+    protected int id;
     @NotNull
     protected String nome;
     @NotNull
@@ -28,28 +30,44 @@ public class Cliente implements Serializable {
     @NotNull
     protected String mail;
 
+    @Embedded
     @NotNull
-    protected String pessoaContacto;
+    @AttributeOverrides({
+            @AttributeOverride( name = "nome", column = @Column(name = "nome_pessoa_contacto")),
+            @AttributeOverride( name = "email", column = @Column(name = "email_pessoa_contacto")),
+            @AttributeOverride( name = "telefone", column = @Column(name = "telefone_pessoa_contacto"))
+    })
+    protected PessoaContacto pessoaContacto;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
+    private Set<Projeto> projetos;
 
     public Cliente() {
 
     }
 
-    public Cliente(String id, @NotNull String nome, @NotNull String morada, @Email @NotNull String mail, @NotNull String pessoaContacto) {
+    public Cliente(int id, @NotNull String nome, @NotNull String morada, @Email @NotNull String mail,@NotNull PessoaContacto pessoaContacto) {
         this.id = id;
         this.nome = nome;
         this.morada = morada;
         this.mail = mail;
         this.pessoaContacto = pessoaContacto;
+        projetos = new HashSet<>();
     }
 
+    public void addProjetos(Projeto projeto){
+        projetos.add(projeto);
+    }
 
+    public void removeProjeto(Projeto projeto){
+        projetos.remove(projeto);
+    }
 
-    public String getPessoaContacto() {
+    public PessoaContacto getPessoaContacto() {
         return pessoaContacto;
     }
 
-    public void setPessoaContacto(String pessoaContacto) {
+    public void setPessoaContacto(PessoaContacto pessoaContacto) {
         this.pessoaContacto = pessoaContacto;
     }
 
@@ -77,11 +95,11 @@ public class Cliente implements Serializable {
         this.mail = email;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 }
