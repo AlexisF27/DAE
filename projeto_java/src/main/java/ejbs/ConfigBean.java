@@ -14,6 +14,8 @@ public class ConfigBean {
     ClienteBean clienteBean;
     @EJB
     ProjetoBean projetoBean;
+    @EJB
+    ProjetistaBean projetistaBean;
 
     @PostConstruct
     public void populateDB(){
@@ -22,7 +24,10 @@ public class ConfigBean {
         //Clientes
         clienteBean.create(1,"Alexis","Leiria", "alexis@mail.pt",new PessoaContacto("Alexis","alexis@mail.pt",999999999));
         //Projetos
-        projetoBean.create(1,"PrimerProjeto",1);
+        projetoBean.create(1,"PrimerProjeto",1,1);
+        //Projetista
+        projetistaBean.create(1,"Hola","hola@hola.pt");
+
 
     }
 }

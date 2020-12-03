@@ -1,6 +1,7 @@
 package ejbs;
 
 import entities.Cliente;
+import entities.Projetista;
 import entities.Projeto;
 
 import javax.ejb.Stateless;
@@ -13,10 +14,11 @@ public class ProjetoBean {
     @PersistenceContext
     EntityManager em;
 
-    public void create(int id, String nome, int clienteCode){
+    public void create(int id, String nome, int clienteCode, int projetistaCode){
         Cliente cliente = em.find(Cliente.class, clienteCode);
-        if(cliente != null) {
-            Projeto projeto = new Projeto(id, nome, cliente);
+        Projetista projetista = em.find(Projetista.class, projetistaCode );
+        if(cliente != null && projetista != null) {
+            Projeto projeto = new Projeto(id, nome, cliente, projetista);
             em.persist(projeto);//permite crear un estudiante en la base de datos
             cliente.addProjetos(projeto);
         }

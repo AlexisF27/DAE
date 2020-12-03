@@ -21,13 +21,17 @@ import java.util.Set;
 
 public class Cliente implements Serializable {
     @Id
+    @Basic(optional = false ,fetch = FetchType.LAZY)
     protected int id;
     @NotNull
+    @Basic(optional = false ,fetch = FetchType.LAZY)
     protected String nome;
     @NotNull
+    @Basic(optional = false ,fetch = FetchType.LAZY)
     protected String morada;
     @Email
     @NotNull
+    @Basic(optional = false ,fetch = FetchType.LAZY)
     protected String mail;
 
     @Embedded
