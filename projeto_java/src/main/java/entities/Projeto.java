@@ -33,6 +33,7 @@ public class Projeto implements Serializable {
     @JoinColumn(name = "PROJETISTA_CODE")
     @NotNull
     protected Projetista projetista;
+    protected int version;
 
 
     public Projeto(){
@@ -44,6 +45,7 @@ public class Projeto implements Serializable {
         this.nome = nome;
         this.cliente = cliente;
         this.projetista = projetista;
+
     }
 
 
