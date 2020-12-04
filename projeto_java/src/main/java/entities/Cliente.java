@@ -33,6 +33,9 @@ public class Cliente implements Serializable {
     @NotNull
     @Basic(optional = false ,fetch = FetchType.LAZY)
     protected String mail;
+    @Version
+    private int version;
+
 
     @Embedded
     @NotNull

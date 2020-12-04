@@ -32,6 +32,8 @@ public class Projetista {
     protected String mail;
     @OneToMany(mappedBy = "projetista", cascade = CascadeType.REMOVE)
     private Set<Projeto> projetos;
+    @Version
+    private int version;
 
     public Projetista() {
     }
