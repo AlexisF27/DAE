@@ -41,7 +41,7 @@ public class ProjetistaServices {
     @Path("/")
     // means: to call this endpoint, we need to use the HTTP GET method @Path("/") // means: the relative url path is “/api/students/”
     public List<ProjetistaDTO> getAllProjetistas() {
-        return toDTOs(projetistaBean.all());
+        return toDTOs(projetistaBean.getAllProjetistas());
     }
 
 

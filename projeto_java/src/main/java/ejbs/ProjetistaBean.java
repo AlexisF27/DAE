@@ -23,11 +23,11 @@ public class ProjetistaBean {
         em.persist(projetista);
     }
 
-    public List<Projetista> all() {
+    public List<Projetista> getAllProjetistas() {
         try {
             return em.createNamedQuery("getAllProjetistas", Projetista.class).getResultList();
         } catch (Exception e) {
-            throw new EJBException("ERROR_RETRIEVING_STUDENTS", e);
+            throw new EJBException("ERROR_RETRIEVING_PROJETISTAS", e);
         }
 
     }
