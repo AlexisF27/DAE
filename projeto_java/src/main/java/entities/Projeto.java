@@ -23,7 +23,7 @@ public class Projeto implements Serializable {
     @Basic(optional = false ,fetch = FetchType.EAGER)
     protected int id;
     @NotNull
-    @Basic(optional = false ,fetch = FetchType.EAGER)
+
     protected String nome;
     @ManyToOne
     @JoinColumn(name = "CLIENTE_CODE")

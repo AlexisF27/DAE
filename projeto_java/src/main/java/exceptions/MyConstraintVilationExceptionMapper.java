@@ -2,13 +2,9 @@ package exceptions;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
 import java.util.logging.Logger;
 
-
-@Provider
-public class MyConstraintViolationExceptionMapper
-        implements ExceptionMapper<MyConstraintViolationException> {
+public class MyConstraintVilationExceptionMapper implements ExceptionMapper<MyConstraintViolationException> {
     private static final Logger logger =
             Logger.getLogger("exceptions.MyEntityExistsExceptionMapper");
     @Override
@@ -18,4 +14,3 @@ public class MyConstraintViolationExceptionMapper
         return Response.status(Response.Status.BAD_REQUEST).entity(errorMsg).build();
     }
 }
-
