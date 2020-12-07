@@ -1,5 +1,8 @@
 package ejbs;
 
+import entities.Estructura;
+import exceptions.MyEntityExistsException;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,7 +12,12 @@ public class EstructuraBean {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void Create(String nome){
+    public void Create(String nome,String tipoMaterial, int nb, double LVao, int q) throws MyEntityExistsException {
+        Estructura estructura = new Estructura(nome,tipoMaterial,nb,LVao,q);
+        if(estructura == null){
+            throw new MyEntityExistsException("A estrutura ja foi criada");
+        }
+        entityManager.persist(estructura);
 
     }
 }

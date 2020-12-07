@@ -11,6 +11,10 @@ public class VarianteDTO {
     private double sigmaC;
     private double pp;
 
+    public VarianteDTO(){
+
+    }
+
     public VarianteDTO(int codigo, String nomeMaterial, String nome, double weff_p, double weff_n, double ar, double sigmaC, double pp) {
         this.codigo = codigo;
         this.nomeMaterial = nomeMaterial;
