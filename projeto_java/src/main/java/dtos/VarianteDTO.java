@@ -1,6 +1,7 @@
 package dtos;
 
 public class VarianteDTO {
+    private static double G = 78.5;
     private int codigo;
     private String nomeMaterial;
     private String nome;
@@ -9,6 +10,17 @@ public class VarianteDTO {
     private double ar;
     private double sigmaC;
     private double pp;
+
+    public VarianteDTO(int codigo, String nomeMaterial, String nome, double weff_p, double weff_n, double ar, double sigmaC, double pp) {
+        this.codigo = codigo;
+        this.nomeMaterial = nomeMaterial;
+        this.nome = nome;
+        this.weff_p = weff_p;
+        this.weff_n = weff_n;
+        this.ar = ar;
+        this.sigmaC = sigmaC;
+        this.pp = G * ar * Math.pow(10, -6);
+    }
 
     public int getCodigo() {
         return codigo;
