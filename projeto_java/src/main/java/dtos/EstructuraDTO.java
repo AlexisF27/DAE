@@ -6,17 +6,27 @@ public class EstructuraDTO {
     private int nb;
     private double LVAo;
     private int q;
+    private int projetoCode;
 
     public EstructuraDTO(){
 
     }
 
-    public EstructuraDTO(String nome, String tipoMaterial, int nb, double LVAo, int q) {
+    public EstructuraDTO(String nome, String tipoMaterial, int nb, double LVAo, int q, int projetoCode) {
         this.nome = nome;
         this.tipoMaterial = tipoMaterial;
         this.nb = nb;
         this.LVAo = LVAo;
         this.q = q;
+        this.projetoCode = projetoCode;
+    }
+
+    public int getProjetoCode() {
+        return projetoCode;
+    }
+
+    public void setProjetoCode(int projetoCode) {
+        this.projetoCode = projetoCode;
     }
 
     public String getNome() {

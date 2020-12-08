@@ -1,13 +1,18 @@
 package entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
 @Entity
+@Table(name="MATERIALES",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"NOME"})
+)
+@NamedQueries({
+        @NamedQuery(
+                name = "getAllMateriales",
+                query = "SELECT m FROM Material m ORDER BY m.nome" // JPQL
+        ) })
 public class Material {
     @Id
     private String nome;

@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 
@@ -33,6 +34,8 @@ public class Projeto implements Serializable {
     @JoinColumn(name = "PROJETISTA_CODE")
     @NotNull
     protected Projetista projetista;
+    @OneToMany(mappedBy = "projeto", cascade = CascadeType.REMOVE)
+    private Set<Estructura> estructuras;
     protected int version;
 
 

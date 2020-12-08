@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="CLIENTES",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"NOME","MORADA","MAIL","PESSOA_CONTACTO"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"ID","MAIL"})
 )
 @NamedQueries({
         @NamedQuery(

@@ -6,6 +6,16 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 @Entity
+
+@Table(name="VARIANTES",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"CODIGO"})
+)
+@NamedQueries({
+        @NamedQuery(
+                name = "getAllVariantes",
+                query = "SELECT v FROM Variante v ORDER BY v.codigo" // JPQL
+        ) })
+
 public class Variante {
     private static double G = 78.5;
 
