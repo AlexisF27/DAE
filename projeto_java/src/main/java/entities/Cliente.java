@@ -19,16 +19,11 @@ import java.util.Set;
                 query = "SELECT c FROM Cliente c ORDER BY c.nome" // JPQL
         ) })
 
-public class Cliente implements Serializable {
-    @Id
-    protected int id;
-    @NotNull
-    protected String nome;
+public class Cliente extends User implements Serializable {
+
+
     @NotNull
     protected String morada;
-    @Email
-    @NotNull
-    protected String mail;
     @Version
     private int version;
     @Embedded
@@ -43,15 +38,14 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private Set<Projeto> projetos;
 
+
     public Cliente() {
 
     }
 
     public Cliente(int id, @NotNull String nome, @NotNull String morada, @Email @NotNull String mail,@NotNull PessoaContacto pessoaContacto) {
-        this.id = id;
-        this.nome = nome;
+        super(id,nome,mail);
         this.morada = morada;
-        this.mail = mail;
         this.pessoaContacto = pessoaContacto;
         projetos = new HashSet<>();
     }
@@ -65,10 +59,14 @@ public class Cliente implements Serializable {
     }
 
     public void addProjetos(Projeto projeto){
+        if(projetos.contains(projeto) && projeto == null){
+            return;
+        }
         projetos.add(projeto);
     }
 
     public void removeProjeto(Projeto projeto){
+        if(!projetos.contains(projeto) && projeto == null)
         projetos.remove(projeto);
     }
 
@@ -80,14 +78,6 @@ public class Cliente implements Serializable {
         this.pessoaContacto = pessoaContacto;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getMorada() {
         return morada;
     }
@@ -96,19 +86,4 @@ public class Cliente implements Serializable {
         this.morada = morada;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String email) {
-        this.mail = email;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
 }

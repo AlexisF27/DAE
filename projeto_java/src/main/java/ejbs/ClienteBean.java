@@ -4,12 +4,15 @@ import dtos.ClienteDTO;
 import entities.Cliente;
 import entities.PessoaContacto;
 import entities.Projetista;
+import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
+import exceptions.MyEntityNotFoundException;
 
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.GET;
 import java.util.List;
 
@@ -18,17 +21,20 @@ public class ClienteBean {
     @PersistenceContext
     EntityManager em;
 
-    public void create(int id, String nome,String morada, String mail, PessoaContacto pessoaContacto) throws MyEntityExistsException {
+    public void create(int id, String nome,String morada, String mail, PessoaContacto pessoaContacto)
+            throws MyEntityExistsException,MyConstraintViolationException {
         Cliente cliente = em.find(Cliente.class,id);
 
         if(cliente != null){
             throw new MyEntityExistsException("Cliente con id: "+id+"ja existe");
         }
 
-        if(cliente == null){
-            throw new MyEntityExistsException("O cliente ja foi inserido");
+        try {
+            cliente = new Cliente(id,nome,morada,mail,pessoaContacto);
+            em.persist(cliente);
+        }catch (ConstraintViolationException e){
+            throw new MyConstraintViolationException(e);
         }
-        em.persist(cliente);
     }
 
     @GET

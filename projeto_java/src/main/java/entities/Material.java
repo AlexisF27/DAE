@@ -19,6 +19,8 @@ public class Material {
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.REMOVE)
     private List<Variante> variantes;
+    @Version
+    private int version;
 
     public Material() {
         variantes = new LinkedList<>();

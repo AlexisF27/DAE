@@ -30,7 +30,7 @@ public class ClienteServices {
                 cliente.getId(),
                 cliente.getNome(),
                 cliente.getMorada(),
-                cliente.getMail(),
+                cliente.getEmail(),
                 new PessoaContacto(cliente.getPessoaContacto().getNome(),cliente.getPessoaContacto().getEmail(),cliente.getPessoaContacto().getTelefone())
         );
 

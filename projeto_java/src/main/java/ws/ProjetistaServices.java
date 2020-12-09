@@ -27,8 +27,8 @@ public class ProjetistaServices {
 
         return new ProjetistaDTO(
                 projetista.getId(),
-                projetista.getName(),
-                projetista.getMail()
+                projetista.getNome(),
+                projetista.getEmail()
         );
 
     }

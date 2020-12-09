@@ -36,6 +36,8 @@ public class Estructura {
     @JoinColumn(name = "PROJETO_CODE")
     @NotNull
     protected Projeto projeto;
+    @Version
+    private int version;
 
 
     public Estructura() {

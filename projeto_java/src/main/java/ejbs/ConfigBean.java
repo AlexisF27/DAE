@@ -45,7 +45,7 @@ public class ConfigBean {
             //Estructuras
         //    estructuraBean.create("PrimerEstrutura","PrimerMaterial",1,11,2,1);
 
-            projetoBean.enrollsProjetoInCliente(1,1,1);
+            projetoBean.enrollsProjetoInClienteandProjetista(1,1,1);
         }catch (Exception exception){
             logger.log(Level.SEVERE, exception.getMessage());
         }
