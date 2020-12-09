@@ -45,6 +45,15 @@ public class Projetista {
         projetos = new HashSet<>();
     }
 
+
+    public void addProjetos(Projeto projeto){
+        projetos.add(projeto);
+    }
+    public void removeProjeto(Projeto projeto){
+        projetos.remove(projeto);
+    }
+
+
     public Set<Projeto> getProjetos() {
         return projetos;
     }

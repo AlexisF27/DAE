@@ -38,4 +38,25 @@ public class ProjetoBean {
         }
     }
 
+    public void enrollsProjetoInCliente(int id, int clienteCode, int projetistaCode){
+        Projeto projeto = em.find(Projeto.class,id);
+        if(projeto == null){
+            throw new IllegalArgumentException();
+        }
+        Cliente cliente = em.find(Cliente.class,clienteCode);
+        if(cliente == null){
+            throw new IllegalArgumentException();
+        }
+        Projetista projetista = em.find(Projetista.class,projetistaCode);
+        if(projetista == null){
+            throw new IllegalArgumentException();
+        }
+
+        if(projeto.getProjetista().equals(projetista) && !cliente.getProjetos().contains(projeto) && !projetista.getProjetos().contains(projeto)){
+            cliente.addProjetos(projeto);
+            projetista.addProjetos(projeto);
+        }
+
+    }
+
 }

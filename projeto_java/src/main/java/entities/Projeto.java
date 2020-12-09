@@ -86,4 +86,18 @@ public class Projeto implements Serializable {
     public int getId() {
         return id;
     }
+
+    public void addEstructuras(Estructura estructura) {
+        if(estructuras.contains(estructura) &&estructura == null){
+            return;
+        }
+        estructuras.add(estructura);
+    }
+
+    public void removeEstrucutras(Estructura estructura){
+        if (!estructuras.contains(estructura) && estructura == null){
+            return;
+        }
+        estructuras.remove(estructura);
+    }
 }

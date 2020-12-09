@@ -56,6 +56,14 @@ public class Cliente implements Serializable {
         projetos = new HashSet<>();
     }
 
+    public Set<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(Set<Projeto> projetos) {
+        this.projetos = projetos;
+    }
+
     public void addProjetos(Projeto projeto){
         projetos.add(projeto);
     }

@@ -1,6 +1,7 @@
 package ejbs;
 
 import entities.PessoaContacto;
+import entities.Variante;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -18,6 +19,12 @@ public class ConfigBean {
     ProjetoBean projetoBean;
     @EJB
     ProjetistaBean projetistaBean;
+    @EJB
+    EstructuraBean estructuraBean;
+    @EJB
+    MaterialBean materialBean;
+    @EJB
+    VarianteBean varianteBean;
     private static final Logger logger = Logger.getLogger("ejbs.ConfigBean");
 
     @PostConstruct
@@ -31,6 +38,14 @@ public class ConfigBean {
             projetoBean.create(1, "PrimerProjeto", 1, 1);
             //Projetista
             projetistaBean.create(1, "Hola", "hola@hola.pt");
+            //Materiales
+            materialBean.create("PrimerMaterial");
+            //Variantes
+            varianteBean.create(1,"PrimerMaterial","PrimerProducto",6.7,6.7,6.7,6.7);
+            //Estructuras
+        //    estructuraBean.create("PrimerEstrutura","PrimerMaterial",1,11,2,1);
+
+            projetoBean.enrollsProjetoInCliente(1,1,1);
         }catch (Exception exception){
             logger.log(Level.SEVERE, exception.getMessage());
         }

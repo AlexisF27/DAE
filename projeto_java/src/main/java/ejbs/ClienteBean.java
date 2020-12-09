@@ -19,7 +19,12 @@ public class ClienteBean {
     EntityManager em;
 
     public void create(int id, String nome,String morada, String mail, PessoaContacto pessoaContacto) throws MyEntityExistsException {
-        Cliente cliente = new Cliente(id,nome,morada,mail,pessoaContacto);
+        Cliente cliente = em.find(Cliente.class,id);
+
+        if(cliente != null){
+            throw new MyEntityExistsException("Cliente con id: "+id+"ja existe");
+        }
+
         if(cliente == null){
             throw new MyEntityExistsException("O cliente ja foi inserido");
         }
