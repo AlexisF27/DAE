@@ -1,25 +1,25 @@
 package dtos;
 
 public class ProjetistaDTO {
-    private int id;
+    private String username;
     private String nome;
     private String mail;
 
     public ProjetistaDTO() {
     }
 
-    public ProjetistaDTO(int id, String nome, String mail) {
-        this.id = id;
+    public ProjetistaDTO(String username, String nome, String mail) {
+        this.username = username;
         this.nome = nome;
         this.mail = mail;
     }
 
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNome() {

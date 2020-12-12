@@ -17,25 +17,18 @@ public class ProjetistaBean {
     @PersistenceContext
     EntityManager em;
 
-    public void create(int id, String name, String mail) throws MyEntityExistsException,MyConstraintViolationException {
-        Projetista projetista = em.find(Projetista.class,id);
+    public void create(String username, String password,String name, String mail) throws MyEntityExistsException,MyConstraintViolationException {
+        Projetista projetista = em.find(Projetista.class,username);
         if(projetista != null){
             throw new MyEntityExistsException("O projetista ja foi criado");
         }
         try{
-        projetista = new Projetista(id,name,mail);
+        projetista = new Projetista(username,password,name,mail);
         em.persist(projetista);
         }catch (ConstraintViolationException e){
             throw new MyConstraintViolationException(e);
         }
     }
 
-    public List<Projetista> getAllProjetistas() {
-        try {
-            return em.createNamedQuery("getAllProjetistas", Projetista.class).getResultList();
-        } catch (Exception e) {
-            throw new EJBException("ERROR_RETRIEVING_PROJETISTAS", e);
-        }
-    }
 
 }

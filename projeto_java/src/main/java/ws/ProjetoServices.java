@@ -26,8 +26,8 @@ public class ProjetoServices {
         return new ProjetoDTO(
                 projeto.getId(),
                 projeto.getNome(),
-                projeto.getCliente().getId(),
-                projeto.getProjetista().getId()
+                projeto.getCliente().getUsername(),
+                projeto.getProjetista().getUsername()
         );
     }
 
@@ -47,7 +47,6 @@ public class ProjetoServices {
         projetoBean.create(
                 projetoDTO.getId(),
                 projetoDTO.getNome(),
-                projetoDTO.getClienteCode(),
                 projetoDTO.getProjetistaCode()
         );
         return Response.status(Response.Status.CREATED).build();

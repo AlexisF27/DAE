@@ -3,24 +3,10 @@ package entities;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
-@Table(name="FABRICANTES",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"ID","MAIL"})
-)
-@NamedQueries({
-        @NamedQuery(
-                name = "getAllFabricantes",
-                query = "SELECT f FROM Fabricante f ORDER BY 1" // JPQL
-        ) })
-
-public class Fabricante {
-    @Id
-    private int id;
-    @NotNull
-    protected String name;
-    @Email
-    @NotNull String mail;
+public class Fabricante extends User implements Serializable {
     @Version
     private int version;
 
@@ -28,35 +14,18 @@ public class Fabricante {
 
     }
 
-    public Fabricante(int id, @NotNull String name, @Email @NotNull String mail) {
-        this.id = id;
-        this.name = name;
-        this.mail = mail;
+    public Fabricante(String username,@NotNull String password ,@NotNull String name, @Email @NotNull String mail) {
+        super(username,name,password,mail);
     }
 
 
-
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 }

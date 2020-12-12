@@ -1,10 +1,7 @@
 package ws;
 
-import dtos.ClienteDTO;
 import dtos.ProjetistaDTO;
-import dtos.ProjetoDTO;
 import ejbs.ProjetistaBean;
-import entities.Cliente;
 import entities.Projetista;
 
 
@@ -26,7 +23,7 @@ public class ProjetistaServices {
     private ProjetistaDTO toDTO(Projetista projetista) {
 
         return new ProjetistaDTO(
-                projetista.getId(),
+                projetista.getUsername(),
                 projetista.getNome(),
                 projetista.getEmail()
         );
@@ -37,12 +34,7 @@ public class ProjetistaServices {
         return projetistas.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    @GET
-    @Path("/")
-    // means: to call this endpoint, we need to use the HTTP GET method @Path("/") // means: the relative url path is “/api/students/”
-    public List<ProjetistaDTO> getAllProjetistas() {
-        return toDTOs(projetistaBean.getAllProjetistas());
-    }
+
 
 
 }

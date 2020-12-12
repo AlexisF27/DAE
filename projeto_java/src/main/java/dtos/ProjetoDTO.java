@@ -6,8 +6,8 @@ import java.util.Set;
 public class ProjetoDTO {
     private int id;
     private String nome;
-    private int clienteCode;
-    private int projetistaCode;
+    private String clienteCode;
+    private String projetistaCode;
     private Set<EstructuraDTO> estructuras;
 
 
@@ -17,7 +17,7 @@ public class ProjetoDTO {
 
     }
 
-    public ProjetoDTO(int id, String nome, int clienteCode,int projetistaCode) {
+    public ProjetoDTO(int id, String nome, String clienteCode,String projetistaCode) {
         this.id = id;
         this.nome = nome;
         this.clienteCode = clienteCode;
@@ -50,18 +50,20 @@ public class ProjetoDTO {
         this.nome = nome;
     }
 
-    public int getClienteCode() {
+
+    public String getClienteCode() {
         return clienteCode;
     }
 
-    public void setClienteCode(int clienteCode) {
+    public void setClienteCode(String clienteCode) {
         this.clienteCode = clienteCode;
     }
-    public int getProjetistaCode() {
+
+    public String getProjetistaCode() {
         return projetistaCode;
     }
 
-    public void setProjetistaCode(int projetistaCode) {
+    public void setProjetistaCode(String projetistaCode) {
         this.projetistaCode = projetistaCode;
     }
 }

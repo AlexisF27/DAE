@@ -27,8 +27,9 @@ public class ClienteServices {
     private ClienteDTO toDTO(Cliente cliente) {
 
         return new ClienteDTO(
-                cliente.getId(),
+                cliente.getUsername(),
                 cliente.getNome(),
+                cliente.getPassword(),
                 cliente.getMorada(),
                 cliente.getEmail(),
                 new PessoaContacto(cliente.getPessoaContacto().getNome(),cliente.getPessoaContacto().getEmail(),cliente.getPessoaContacto().getTelefone())
@@ -40,19 +41,15 @@ public class ClienteServices {
         return clientes.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
-    @GET
-    @Path("/")
-    // means: to call this endpoint, we need to use the HTTP GET method @Path("/") // means: the relative url path is “/api/students/”
-    public List<ClienteDTO> getAllClientesWS() {
-        return toDTOs(clienteBean.getAllClientes());
-    }
+
 
     @POST
     @Path("/")
     public Response createNewCliente(ClienteDTO clienteDTO) throws MyEntityExistsException, MyEntityNotFoundException, MyConstraintViolationException {
         clienteBean.create(
-                clienteDTO.getId(),
+                clienteDTO.getUsername(),
                 clienteDTO.getNome(),
+                clienteDTO.getPassword(),
                 clienteDTO.getMorada(),
                 clienteDTO.getMail(),
                 new PessoaContacto(clienteDTO.getPessoaContacto().getNome(),clienteDTO.getPessoaContacto().getEmail(),clienteDTO.getPessoaContacto().getTelefone())

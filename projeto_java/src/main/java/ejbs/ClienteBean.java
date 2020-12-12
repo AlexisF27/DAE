@@ -21,30 +21,21 @@ public class ClienteBean {
     @PersistenceContext
     EntityManager em;
 
-    public void create(int id, String nome,String morada, String mail, PessoaContacto pessoaContacto)
+    public void create(String username, String nome,String morada,String password, String mail, PessoaContacto pessoaContacto)
             throws MyEntityExistsException,MyConstraintViolationException {
-        Cliente cliente = em.find(Cliente.class,id);
+        Cliente cliente = em.find(Cliente.class,username);
 
         if(cliente != null){
-            throw new MyEntityExistsException("Cliente con id: "+id+"ja existe");
+            throw new MyEntityExistsException("Cliente con id: "+username+"ja existe");
         }
 
         try {
-            cliente = new Cliente(id,nome,morada,mail,pessoaContacto);
+            cliente = new Cliente(username,nome,password,morada,mail,pessoaContacto);
             em.persist(cliente);
         }catch (ConstraintViolationException e){
             throw new MyConstraintViolationException(e);
         }
     }
 
-    @GET
-    // means: to call this endpoint, we need to use the HTTP GET method @Path("/") // means: the relative url path is “/api/students/”
-    public List<Cliente> getAllClientes() {
-        try {
-            return  em.createNamedQuery("getAllClientes", Cliente.class).getResultList();
-        } catch (Exception e) {
-            throw new EJBException("ERROR_RETRIEVING_CLIENTES", e);
-        }
 
-    }
 }

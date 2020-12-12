@@ -6,34 +6,31 @@ import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
 
 import javax.ejb.EJBException;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 
+@Stateless
 public class FabricanteBean {
     @PersistenceContext
     EntityManager em;
-    public void create(int id, String name, String mail) throws MyEntityExistsException, MyConstraintViolationException {
-        Fabricante fabricante = em.find(Fabricante.class,id);
+    public void create(String username, String name,String password, String mail) throws MyEntityExistsException, MyConstraintViolationException {
+        Fabricante fabricante = em.find(Fabricante.class,username);
         if(fabricante != null){
             throw new MyEntityExistsException("O fabricante ja foi criado");
         }
         try{
-            fabricante = new Fabricante(id,name,mail);
+            fabricante = new Fabricante(username,name,password,mail);
             em.persist(fabricante);
         }catch (ConstraintViolationException e){
             throw new MyConstraintViolationException(e);
         }
     }
 
-    public List<Fabricante> getAllFabricante() {
-        try {
-            return em.createNamedQuery("getAllFabricantes", Fabricante.class).getResultList();
-        } catch (Exception e) {
-            throw new EJBException("ERROR_RETRIEVING_FABRICANTES", e);
-        }
-    }
+
+
 
 
 }

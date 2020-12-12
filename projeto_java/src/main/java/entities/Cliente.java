@@ -10,15 +10,6 @@ import java.util.Set;
 
 
 @Entity
-@Table(name="CLIENTES",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"ID","MAIL"})
-)
-@NamedQueries({
-        @NamedQuery(
-                name = "getAllClientes",
-                query = "SELECT c FROM Cliente c ORDER BY c.nome" // JPQL
-        ) })
-
 public class Cliente extends User implements Serializable {
 
 
@@ -43,8 +34,8 @@ public class Cliente extends User implements Serializable {
 
     }
 
-    public Cliente(int id, @NotNull String nome, @NotNull String morada, @Email @NotNull String mail,@NotNull PessoaContacto pessoaContacto) {
-        super(id,nome,mail);
+    public Cliente(String username, @NotNull String nome,@NotNull String password, @NotNull String morada, @Email @NotNull String mail,@NotNull PessoaContacto pessoaContacto) {
+        super(username,nome,password,mail);
         this.morada = morada;
         this.pessoaContacto = pessoaContacto;
         projetos = new HashSet<>();

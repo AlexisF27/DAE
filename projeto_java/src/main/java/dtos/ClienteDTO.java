@@ -5,29 +5,39 @@ import entities.PessoaContacto;
 import java.io.Serializable;
 
 public class ClienteDTO implements Serializable {
-    private int id;
+    private String username;
     private String nome;
     private String morada;
+    private String password;
     private String mail;
     private PessoaContacto pessoaContacto;
 
     public ClienteDTO() {
     }
 
-    public ClienteDTO(int id, String nome, String morada, String mail, PessoaContacto pessoaContacto) {
-        this.id = id;
+    public ClienteDTO(String username, String nome,String password, String morada, String mail, PessoaContacto pessoaContacto) {
+        this.username = username;
         this.nome = nome;
+        this.password = password;
         this.morada = morada;
         this.mail = mail;
         this.pessoaContacto = pessoaContacto;
     }
 
-    public int getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNome() {

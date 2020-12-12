@@ -10,15 +10,6 @@ import java.util.Set;
 
 
 @Entity
-@Table(name="PROJETISTAS",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"ID","MAIL"})
-)
-@NamedQueries({
-        @NamedQuery(
-                name = "getAllProjetistas",
-                query = "SELECT p FROM Projetista p ORDER BY 1" // JPQL
-        ) })
-
 public class Projetista extends User implements Serializable {
 
     @OneToMany(mappedBy = "projetista", cascade = CascadeType.REMOVE)
@@ -29,8 +20,8 @@ public class Projetista extends User implements Serializable {
     public Projetista() {
     }
 
-    public Projetista(int id, @NotNull String nome, @Email @NotNull String mail) {
-        super(id,nome, mail);
+    public Projetista(String username, String password, @NotNull String nome, @Email @NotNull String mail) {
+        super(username,password,nome, mail);
         projetos = new HashSet<>();
     }
 
@@ -46,6 +37,7 @@ public class Projetista extends User implements Serializable {
     public Set<Projeto> getProjetos() {
         return projetos;
     }
+
 
     public void setProjetos(Set<Projeto> projetos) {
         this.projetos = projetos;

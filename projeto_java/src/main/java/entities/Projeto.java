@@ -15,7 +15,7 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(
                 name = "getAllProjetos",
-                query = "SELECT p FROM Projeto p ORDER BY p.cliente.id , p.projetista.id ,p.nome" // JPQL
+                query = "SELECT p FROM Projeto p ORDER BY p.cliente.username , p.projetista.username ,p.nome" // JPQL
         )
 })
 
@@ -24,11 +24,9 @@ public class Projeto implements Serializable {
     @Basic(optional = false ,fetch = FetchType.EAGER)
     protected int id;
     @NotNull
-
     protected String nome;
     @ManyToOne
     @JoinColumn(name = "CLIENTE_CODE")
-    @NotNull
     protected Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "PROJETISTA_CODE")
@@ -43,7 +41,7 @@ public class Projeto implements Serializable {
 
     }
 
-    public Projeto(int id, @NotNull String nome, @NotNull Cliente cliente, @NotNull Projetista projetista) {
+    public Projeto(int id, @NotNull String nome,  Cliente cliente, @NotNull Projetista projetista) {
         this.id = id;
         this.nome = nome;
         this.cliente = cliente;
