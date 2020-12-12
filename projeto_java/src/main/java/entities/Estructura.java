@@ -54,6 +54,20 @@ public class Estructura {
         this.projeto = projeto;
     }
 
+    @Override
+    public String toString() {
+        return "Estructura{" +
+                "nome='" + nome + '\'' +
+                ", tipoMaterial='" + tipoMaterial + '\'' +
+                ", nb=" + nb +
+                ", LVao=" + LVao +
+                ", q=" + q +
+                ", variantes=" + variantes +
+                ", projeto=" + projeto +
+                ", version=" + version +
+                '}';
+    }
+
     public int getNb() {
         return nb;
     }

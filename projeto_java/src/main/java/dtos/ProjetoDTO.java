@@ -33,6 +33,17 @@ public class ProjetoDTO {
         this.estructuras = estructuras;
     }
 
+    @Override
+    public String toString() {
+        return "ProjetoDTO{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", clienteCode='" + clienteCode + '\'' +
+                ", projetistaCode='" + projetistaCode + '\'' +
+                ", estructuras=" + estructuras +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

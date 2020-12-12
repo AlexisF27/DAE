@@ -20,18 +20,13 @@ public class EstructuraBean {
     EntityManager entityManager;
 
     public void create(String nome, String tipoMaterial, int nb, double LVao, int q, int projetoCode) throws MyEntityExistsException, MyEntityNotFoundException,MyConstraintViolationException {
-        Estructura estructura = entityManager.find(Estructura.class,nome);
-        if(estructura != null){
-            throw new MyEntityExistsException("Estrutura com o nome" +nome +"ja existe");
-        }
-        Projeto projeto = entityManager.find(Projeto.class,projetoCode);
-        if(projeto != null){
-            throw new MyEntityNotFoundException("Projeto com numero "+ projetoCode + " ja existe");
-        }
         try{
+            Estructura estructura = entityManager.find(Estructura.class,nome);
+            //System.out.println("ESTRUCTURA"+estructura.toString());
+            Projeto projeto = entityManager.find(Projeto.class,projetoCode);
+            //System.out.println("ESTRUCTURA"+estructura.toString());
             estructura = new Estructura(nome,tipoMaterial,nb,LVao,q,projeto);
             entityManager.persist(estructura);
-            projeto.addEstructuras(estructura);
         }catch (ConstraintViolationException e){
             throw new MyConstraintViolationException(e);
         }
