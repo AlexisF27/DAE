@@ -11,7 +11,7 @@ import java.util.Set;
 )
 @NamedQueries({
         @NamedQuery(
-                name = "getallEstructuras",
+                name = "getAllEstructuras",
                 query = "SELECT e FROM Estructura e ORDER BY e.nome" // JPQL
         ) })
 public class Estructura {

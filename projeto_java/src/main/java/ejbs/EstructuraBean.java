@@ -19,7 +19,7 @@ public class EstructuraBean {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void create(String nome, String tipoMaterial, int nb, double LVao, int q, int projetoCode) throws MyEntityExistsException, MyEntityNotFoundException,MyConstraintViolationException {
+    public void create(String nome, String tipoMaterial, int nb, double LVao, int q, String projetoCode) throws MyEntityExistsException, MyEntityNotFoundException,MyConstraintViolationException {
         try{
             Estructura estructura = entityManager.find(Estructura.class,nome);
             //System.out.println("ESTRUCTURA"+estructura.toString());
@@ -37,7 +37,7 @@ public class EstructuraBean {
     }
     public List<Estructura> getAllEstructuras() {
         try {
-            return entityManager.createNamedQuery("getAllEstrucutras", Estructura.class).getResultList();
+            return entityManager.createNamedQuery("getAllEstructuras", Estructura.class).getResultList();
         } catch (Exception e) {
             throw new EJBException("ERROR_RETRIEVING_ESTRUCTURAS", e);
         }

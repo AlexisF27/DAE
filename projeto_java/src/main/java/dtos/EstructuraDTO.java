@@ -6,13 +6,13 @@ public class EstructuraDTO {
     private int nb;
     private double LVAo;
     private int q;
-    private int projetoCode;
+    private String projetoCode;
 
     public EstructuraDTO(){
 
     }
 
-    public EstructuraDTO(String nome, String tipoMaterial, int nb, double LVAo, int q, int projetoCode) {
+    public EstructuraDTO(String nome, String tipoMaterial, int nb, double LVAo, int q, String projetoCode) {
         this.nome = nome;
         this.tipoMaterial = tipoMaterial;
         this.nb = nb;
@@ -21,11 +21,11 @@ public class EstructuraDTO {
         this.projetoCode = projetoCode;
     }
 
-    public int getProjetoCode() {
+    public String getProjetoCode() {
         return projetoCode;
     }
 
-    public void setProjetoCode(int projetoCode) {
+    public void setProjetoCode(String projetoCode) {
         this.projetoCode = projetoCode;
     }
 
