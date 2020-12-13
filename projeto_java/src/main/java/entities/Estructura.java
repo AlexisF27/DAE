@@ -20,7 +20,8 @@ public class Estructura {
     @NotNull
     private String nome;
     @NotNull
-    private String tipoMaterial;
+    @Enumerated(EnumType.STRING)
+    private TipoEstructura tipoMaterial;
     @NotNull
     private int nb;
     @NotNull
@@ -44,7 +45,7 @@ public class Estructura {
         this.variantes = new HashSet<>();
     }
 
-    public Estructura(@NotNull String nome, @NotNull String tipoMaterial, @NotNull int nb, @NotNull double LVao, @NotNull int q,@NotNull Projeto projeto) {
+    public Estructura(@NotNull String nome, @NotNull TipoEstructura tipoMaterial, @NotNull int nb, @NotNull double LVao, @NotNull int q,@NotNull Projeto projeto) {
         this.nome = nome;
         this.tipoMaterial = tipoMaterial;
         this.nb = nb;
@@ -100,12 +101,20 @@ public class Estructura {
         this.projeto = projeto;
     }
 
-    public String getTipoMaterial() {
+    public TipoEstructura getTipoMaterial() {
         return tipoMaterial;
     }
 
-    public void setTipoMaterial(String tipoMaterial) {
+    public void setTipoMaterial(TipoEstructura tipoMaterial) {
         this.tipoMaterial = tipoMaterial;
+    }
+
+    public Set<Variante> getVariantes() {
+        return variantes;
+    }
+
+    public void setVariantes(Set<Variante> variantes) {
+        this.variantes = variantes;
     }
 
     public void setNome(String nome) {

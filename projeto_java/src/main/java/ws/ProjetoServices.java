@@ -26,7 +26,7 @@ public class ProjetoServices {
         return new ProjetoDTO(
                 projeto.getId(),
                 projeto.getNome(),
-                projeto.getCliente().getUsername(),
+                null,
                 projeto.getProjetista().getUsername()
         );
     }

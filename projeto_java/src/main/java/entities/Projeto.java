@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,7 +16,7 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(
                 name = "getAllProjetos",
-                query = "SELECT p FROM Projeto p ORDER BY p.cliente.username , p.projetista.username ,p.nome" // JPQL
+                query = "SELECT p FROM Projeto p ORDER BY p.cliente.username" // JPQL
         )
 })
 
@@ -46,9 +47,17 @@ public class Projeto implements Serializable {
         this.nome = nome;
         this.cliente = cliente;
         this.projetista = projetista;
+        estructuras = new HashSet<>();
 
     }
 
+    public Set<Estructura> getEstructuras() {
+        return estructuras;
+    }
+
+    public void setEstructuras(Set<Estructura> estructuras) {
+        this.estructuras = estructuras;
+    }
 
     public Projetista getProjetista() {
         return projetista;

@@ -19,6 +19,11 @@ public class Material {
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.REMOVE)
     private List<Variante> variantes;
+
+    @ManyToOne
+    @JoinColumn(name = "FABRICANTE_CODE")
+    protected Fabricante fabricante;
+
     @Version
     private int version;
 
@@ -26,9 +31,18 @@ public class Material {
         variantes = new LinkedList<>();
     }
 
-    public Material(String nome) {
+    public Material(String nome,Fabricante fabricante) {
         this.nome = nome;
+        this.fabricante = fabricante;
         variantes = new LinkedList<>();
+    }
+
+    public Fabricante getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(Fabricante fabricante) {
+        this.fabricante = fabricante;
     }
 
     public String getNome() {

@@ -3,6 +3,7 @@ package ejbs;
 import entities.Estructura;
 import entities.Projetista;
 import entities.Projeto;
+import entities.TipoEstructura;
 import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
 import exceptions.MyEntityNotFoundException;
@@ -19,7 +20,8 @@ public class EstructuraBean {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void create(String nome, String tipoMaterial, int nb, double LVao, int q, String projetoCode) throws MyEntityExistsException, MyEntityNotFoundException,MyConstraintViolationException {
+
+    public void create(String nome, TipoEstructura tipoMaterial, int nb, double LVao, int q, int projetoCode) throws MyEntityExistsException, MyEntityNotFoundException,MyConstraintViolationException {
         try{
             Estructura estructura = entityManager.find(Estructura.class,nome);
             //System.out.println("ESTRUCTURA"+estructura.toString());
@@ -27,6 +29,7 @@ public class EstructuraBean {
             //System.out.println("ESTRUCTURA"+estructura.toString());
             estructura = new Estructura(nome,tipoMaterial,nb,LVao,q,projeto);
             entityManager.persist(estructura);
+            projeto.addEstructuras(estructura);
         }catch (ConstraintViolationException e){
             throw new MyConstraintViolationException(e);
         }

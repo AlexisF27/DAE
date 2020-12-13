@@ -2,11 +2,21 @@ package dtos;
 
 public class MaterialDTO {
     private String nome;
+    private String fabricante;
 
     public MaterialDTO(){}
 
-    public MaterialDTO(String nome) {
+    public MaterialDTO(String nome,String fabricante) {
         this.nome = nome;
+        this.fabricante = fabricante;
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
     }
 
     public String getNome() {

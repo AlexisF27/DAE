@@ -2,6 +2,7 @@ package ejbs;
 
 import entities.Fabricante;
 import entities.PessoaContacto;
+import entities.TipoEstructura;
 import entities.Variante;
 
 import javax.annotation.PostConstruct;
@@ -51,14 +52,16 @@ public class ConfigBean {
 
             System.out.println("++++++++++++++\n"+"CRATING PROJECT .......\n"+"+++++++++++++");
             projetoBean.create(2, "PrimerProjeto",  "projetista1");
+            projetoBean.create(3, "SegundoProjeto",  "projetista1");
+
 
             System.out.println("++++++++++++++\n"+"ENROLLING PROJECT - PROJETISTA .......\n"+"+++++++++++++");
             projetoBean.enrollsProjetoInProjetista(2,"projetista1");
 
             System.out.println("++++++++++++++\n"+"CRATING MATERIALES .......\n"+"+++++++++++++");
             //Materiales
-            materialBean.create("Section Z 220 BF");
-            materialBean.create("Section C 220 BF");
+            materialBean.create("Section Z 220 BF","fabricante1");
+            materialBean.create("Section C 220 BF","fabricante1");
             //Variantes
             System.out.println("++++++++++++++\n"+"CRATING VARIANTES .......\n"+"+++++++++++++");
             varianteBean.create(1, "Section C 220 BF", "C 120/50/21 x 1.5", 13846, 13846, 375, 220000);
@@ -111,10 +114,13 @@ public class ConfigBean {
                 System.out.println("A variante " + variante2.getNome() + " não pode ser usada.");
             }
 
-
             //Estructuras
             System.out.println("++++++++++++++\n"+"CRATING ESTRUCTURA .......\n"+"+++++++++++++");
-            estructuraBean.create("PrimerEstrutura","...",1,11,2,2);
+            System.out.println("++++++++++++++\n"+TipoEstructura.Chapa+"+++++++++++++");
+            estructuraBean.create("PrimerEstrutura", TipoEstructura.Laje, 1,11,2,2);
+            //estructuraBean.create("PrimerEstrutura", TipoEstructura.Laje,1,11,2,2);
+            //estructuraBean.create("PrimerEstrutura", TipoEstructura.Painel,1,11,2,2);
+            //estructuraBean.create("PrimerEstrutura", TipoEstructura.Perfis,1,11,2,2);
         }catch (Exception exception){
             logger.log(Level.SEVERE, exception.getMessage());
         }

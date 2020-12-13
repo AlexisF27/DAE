@@ -1,18 +1,21 @@
 package dtos;
 
+import entities.TipoEstructura;
+
 public class EstructuraDTO {
     private String nome;
-    private String tipoMaterial;
+    private TipoEstructura tipoMaterial;
     private int nb;
     private double LVAo;
     private int q;
-    private String projetoCode;
+    private int projetoCode;
 
     public EstructuraDTO(){
 
     }
 
-    public EstructuraDTO(String nome, String tipoMaterial, int nb, double LVAo, int q, String projetoCode) {
+
+    public EstructuraDTO(String nome, TipoEstructura tipoMaterial, int nb, double LVAo, int q, int projetoCode) {
         this.nome = nome;
         this.tipoMaterial = tipoMaterial;
         this.nb = nb;
@@ -21,11 +24,11 @@ public class EstructuraDTO {
         this.projetoCode = projetoCode;
     }
 
-    public String getProjetoCode() {
+    public int getProjetoCode() {
         return projetoCode;
     }
 
-    public void setProjetoCode(String projetoCode) {
+    public void setProjetoCode(int projetoCode) {
         this.projetoCode = projetoCode;
     }
 
@@ -37,11 +40,11 @@ public class EstructuraDTO {
         this.nome = nome;
     }
 
-    public String getTipoMaterial() {
+    public TipoEstructura getTipoMaterial() {
         return tipoMaterial;
     }
 
-    public void setTipoMaterial(String tipoMaterial) {
+    public void setTipoMaterial(TipoEstructura tipoMaterial) {
         this.tipoMaterial = tipoMaterial;
     }
 

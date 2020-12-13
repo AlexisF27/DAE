@@ -1,5 +1,6 @@
 package ejbs;
 
+import entities.Fabricante;
 import entities.Material;
 import entities.Projetista;
 import exceptions.MyConstraintViolationException;
@@ -18,14 +19,13 @@ public class MaterialBean {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void create(String name) throws MyEntityExistsException, MyConstraintViolationException {
-        Material material = entityManager.find(Material.class,name);
-        if(material != null) {
-            throw new MyEntityExistsException("O material ja foi criado ");
-        }
+    public void create(String name, String fabricante) throws MyEntityExistsException, MyConstraintViolationException {
         try {
-            material = new Material(name);
+        Material material = entityManager.find(Material.class,name);
+        Fabricante fabricanteFind = entityManager.find(Fabricante.class,fabricante);
+            material = new Material(name, fabricanteFind);
             entityManager.persist(material);
+            fabricanteFind.addMateriales(material);
         }catch(ConstraintViolationException e){
             throw new MyConstraintViolationException(e);
         }
