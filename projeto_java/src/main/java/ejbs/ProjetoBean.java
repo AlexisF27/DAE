@@ -49,7 +49,6 @@ public class ProjetoBean {
 
         em.lock(projeto, LockModeType.OPTIMISTIC);
         projeto.setNome(nome);
-        projeto.setProjetista(projetista);  /////implementar unroll
 
         em.merge(projeto);
 
@@ -65,6 +64,25 @@ public class ProjetoBean {
             return em.createNamedQuery("getAllProjetos", Projeto.class).getResultList();
         } catch(Exception exception){
             throw new EJBException("ERROR_RETRIEVING_PROJETOS",exception);
+        }
+    }
+
+    public void deleteProjeto(int id)throws MyEntityNotFoundException{
+
+        Projeto projeto = findProjeto(id);
+        System.out.printf("Projeto a remover "+ projeto);
+
+        if(projeto == null) {
+            throw new MyEntityNotFoundException("Projeot com id " + id + " nao encontrada.");
+        }
+        Projetista projetista = em.find(Projetista.class, projeto.getProjetista().getUsername());
+
+        em.remove(projeto);
+        projetista.removeProjeto(projeto);
+
+        if(projeto.getCliente() != null){
+            Cliente cliente = em.find(Cliente.class, projeto.getCliente().getUsername());
+            cliente.removeProjeto(projeto);
         }
     }
 

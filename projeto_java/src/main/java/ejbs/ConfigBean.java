@@ -49,10 +49,12 @@ public class ConfigBean {
 
             System.out.println("++++++++++++++\n"+"CRATING FABRICANTE .......\n"+"+++++++++++++");
             fabricanteBean.create("fabricante1","Toto","kjaslfkjas","toto@mail.pt");
+            fabricanteBean.create("fabricante2", "asdasd","123","f@mail.pt");
 
             System.out.println("++++++++++++++\n"+"CRATING PROJECT .......\n"+"+++++++++++++");
             projetoBean.create(2, "PrimerProjeto",  "projetista1");
             projetoBean.create(3, "SegundoProjeto",  "projetista1");
+            projetoBean.create(4, "CuartoProjeto", "projetista1");
 
 
             System.out.println("++++++++++++++\n"+"ENROLLING PROJECT - PROJETISTA .......\n"+"+++++++++++++");
@@ -119,7 +121,8 @@ public class ConfigBean {
             System.out.println("++++++++++++++\n"+TipoEstructura.Chapa+"+++++++++++++");
             estructuraBean.create("PrimerEstrutura", TipoEstructura.Laje, 1,11,2,2);
             estructuraBean.create("SegundaEstrutura", TipoEstructura.Chapa, 10,11,20,3);
-           // estructuraBean.deleteEstrutura("PrimerEstrutura");
+            estructuraBean.deleteEstrutura("PrimerEstrutura");
+
             //estructuraBean.create("PrimerEstrutura", TipoEstructura.Laje,1,11,2,2);
             //estructuraBean.create("PrimerEstrutura", TipoEstructura.Painel,1,11,2,2);
             //estructuraBean.create("PrimerEstrutura", TipoEstructura.Perfis,1,11,2,2);

@@ -79,11 +79,12 @@ public class EstruturaServices {
     @DELETE
     @Path("/{nome}")
     public Response removeNewEstrutura(@PathParam("nome") String nome) throws MyEntityNotFoundException {
-
+        System.out.printf("uuuuuuuu");
         estructuraBean.deleteEstrutura(nome);
 
         return Response.status(Response.Status.CREATED).build();
     }
+
 
 
 }

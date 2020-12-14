@@ -30,8 +30,8 @@ public class Estructura {
     private int q;
     @ManyToMany
     @JoinTable(name = "ESTRUCTURA_VARIANTE",
-            joinColumns = @JoinColumn(name = "VARIANTE_CODIGO", referencedColumnName = "CODIGO"),
-            inverseJoinColumns = @JoinColumn(name = "ESTRUCTURA_NOME", referencedColumnName = "NOME"))
+            joinColumns =@JoinColumn(name = "ESTRUCTURA_NOME", referencedColumnName = "NOME") ,
+            inverseJoinColumns = @JoinColumn(name = "VARIANTE_CODIGO", referencedColumnName = "CODIGO"))
     Set<Variante> variantes;
     @ManyToOne
     @JoinColumn(name = "PROJETO_CODE")

@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,11 +36,12 @@ public class Projeto implements Serializable {
     @NotNull
     protected Projetista projetista;
     @OneToMany(mappedBy = "projeto", cascade = CascadeType.REMOVE)
-    private Set<Estructura> estructuras;
+    private List<Estructura> estructuras;
     protected int version;
 
 
     public Projeto(){
+        estructuras = new LinkedList<>();
 
     }
 
@@ -47,15 +50,15 @@ public class Projeto implements Serializable {
         this.nome = nome;
         this.cliente = cliente;
         this.projetista = projetista;
-        estructuras = new HashSet<>();
+        estructuras = new LinkedList<>();
 
     }
 
-    public Set<Estructura> getEstructuras() {
+    public List<Estructura> getEstructuras() {
         return estructuras;
     }
 
-    public void setEstructuras(Set<Estructura> estructuras) {
+    public void setEstructuras(List<Estructura> estructuras) {
         this.estructuras = estructuras;
     }
 

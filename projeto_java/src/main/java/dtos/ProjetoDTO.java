@@ -1,6 +1,8 @@
 package dtos;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 public class ProjetoDTO {
@@ -8,12 +10,11 @@ public class ProjetoDTO {
     private String nome;
     private String clienteCode;
     private String projetistaCode;
-    private Set<EstructuraDTO> estructuras;
+    private List<EstructuraDTO> estructuras;
 
 
 
     public ProjetoDTO(){
-        estructuras = new HashSet<>();
 
     }
 
@@ -22,14 +23,14 @@ public class ProjetoDTO {
         this.nome = nome;
         this.clienteCode = clienteCode;
         this.projetistaCode = projetistaCode;
-        estructuras = new HashSet<>();
+        estructuras = new LinkedList<>();
     }
 
-    public Set<EstructuraDTO> getEstructuras() {
+    public List<EstructuraDTO> getEstructuras() {
         return estructuras;
     }
 
-    public void setEstructuras(Set<EstructuraDTO> estructuras) {
+    public void setEstructuras(List<EstructuraDTO> estructuras) {
         this.estructuras = estructuras;
     }
 

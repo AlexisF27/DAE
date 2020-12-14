@@ -55,7 +55,6 @@ public class EstructuraBean {
         estructura.setNb(nb);
         estructura.setLVao(LVao);
         estructura.setQ(q);
-        estructura.setProjeto(projeto); ///////Implementar unroll
 
         entityManager.merge(estructura);
 
@@ -68,7 +67,11 @@ public class EstructuraBean {
         if(estructura == null) {
             throw new MyEntityNotFoundException("Estrutura com nome " + nome + " nao encontrada.");
         }
+        Projeto projeto = entityManager.find(Projeto.class, estructura.getProjeto().getId());
+
+        projeto.removeEstrucutras(estructura);
         entityManager.remove(estructura);
+
 
     }
 

@@ -1,14 +1,14 @@
 package ejbs;
 
-import entities.Fabricante;
-import entities.Material;
-import entities.Projetista;
+import entities.*;
 import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
+import exceptions.MyEntityNotFoundException;
 
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
@@ -31,12 +31,45 @@ public class MaterialBean {
         }
     }
 
+    public Material findMaterial(String name){
+        return entityManager.find(Material.class, name);
+    }
+
     public List<Material> getAllMateriales() {
         try {
             return entityManager.createNamedQuery("getAllMateriales", Material.class).getResultList();
         } catch (Exception e) {
             throw new EJBException("ERROR_RETRIEVING_MATERIALES", e);
         }
+    }
+
+    public void updateMaterial(String name, String fabricanteCode) throws MyEntityNotFoundException {
+        Material material =  findMaterial(name);
+        if(material == null) {
+            throw new MyEntityNotFoundException("Material com nome " + name + " nao encontrada.");
+        }
+        Fabricante fabricante = entityManager.find(Fabricante.class, fabricanteCode);
+
+        if(fabricante == null) {
+            throw new MyEntityNotFoundException("Fabricante with code " + fabricanteCode + " not found.");
+        }
+        entityManager.lock(material, LockModeType.OPTIMISTIC);
+        material.setNome(name);
+        material.setFabricante(fabricante);
+
+        entityManager.merge(material);
+    }
+    public void deleteMaterial(String name)throws MyEntityNotFoundException{
+
+        Material material = findMaterial(name);
+        System.out.printf("Material a remover "+ material);
+        if(material == null) {
+            throw new MyEntityNotFoundException("Material com nome " + name + " nao encontrada.");
+        }
+        Fabricante fabricante = entityManager.find(Fabricante.class, material.getFabricante().getUsername());
+
+        entityManager.remove(material);
+        fabricante.removeMaterial(material);
 
     }
 }
