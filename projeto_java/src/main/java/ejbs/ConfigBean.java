@@ -118,6 +118,8 @@ public class ConfigBean {
             System.out.println("++++++++++++++\n"+"CRATING ESTRUCTURA .......\n"+"+++++++++++++");
             System.out.println("++++++++++++++\n"+TipoEstructura.Chapa+"+++++++++++++");
             estructuraBean.create("PrimerEstrutura", TipoEstructura.Laje, 1,11,2,2);
+            estructuraBean.create("SegundaEstrutura", TipoEstructura.Chapa, 10,11,20,3);
+           // estructuraBean.deleteEstrutura("PrimerEstrutura");
             //estructuraBean.create("PrimerEstrutura", TipoEstructura.Laje,1,11,2,2);
             //estructuraBean.create("PrimerEstrutura", TipoEstructura.Painel,1,11,2,2);
             //estructuraBean.create("PrimerEstrutura", TipoEstructura.Perfis,1,11,2,2);

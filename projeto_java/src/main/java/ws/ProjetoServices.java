@@ -1,5 +1,6 @@
 package ws;
 
+import dtos.EstructuraDTO;
 import dtos.ProjetoDTO;
 import ejbs.ProjetoBean;
 import entities.Projeto;
@@ -52,4 +53,15 @@ public class ProjetoServices {
         return Response.status(Response.Status.CREATED).build();
     }
 
+    @PUT
+    @Path("/{id}")
+    public Response updateNewProjeto(ProjetoDTO projetoDTO) throws MyEntityNotFoundException {
+
+        projetoBean.updateProjeto(projetoDTO.getId(),
+                projetoDTO.getNome(),
+                projetoDTO.getProjetistaCode()
+        );
+
+        return Response.status(Response.Status.CREATED).build();
+    }
 }

@@ -1,8 +1,6 @@
 package ejbs;
 
-import entities.Cliente;
-import entities.Projetista;
-import entities.Projeto;
+import entities.*;
 import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
 import exceptions.MyEntityNotFoundException;
@@ -10,6 +8,7 @@ import exceptions.MyEntityNotFoundException;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
@@ -21,8 +20,14 @@ public class ProjetoBean {
 
     public void create(int id, String nome,  String projetistaCode) throws MyEntityExistsException,MyConstraintViolationException,MyEntityNotFoundException {
         try {
-            Projetista projetista = em.find(Projetista.class, projetistaCode );
-            Projeto projeto = em.find(Projeto.class,id);
+            Projetista projetista = em.find(Projetista.class, projetistaCode);
+            if (projetista == null){
+                throw new MyEntityNotFoundException("O projetista asociado nao foi encontrado");
+            }
+            Projeto projeto = findProjeto(id);
+            if (projeto != null){
+                throw  new MyEntityExistsException("O projeto ja existe");
+            }
             projeto = new Projeto(id, nome,null, projetista);
             em.persist(projeto);
             projetista.addProjetos(projeto);
@@ -30,6 +35,29 @@ public class ProjetoBean {
             throw new MyConstraintViolationException(e);
         }
 
+    }
+
+    public void updateProjeto(int id, String nome, String projetistaCode) throws MyEntityNotFoundException{
+        Projeto projeto =  findProjeto(id);
+        if(projeto == null) {
+            throw new MyEntityNotFoundException("Projeto com id " + id + " nao encontrada.");
+        }
+        Projetista projetista = em.find(Projetista.class, projetistaCode);
+        if(projetista == null) {
+            throw new MyEntityNotFoundException("Projetista com code " + projetistaCode + " not found.");
+        }
+
+        em.lock(projeto, LockModeType.OPTIMISTIC);
+        projeto.setNome(nome);
+        projeto.setProjetista(projetista);  /////implementar unroll
+
+        em.merge(projeto);
+
+    }
+
+
+    public Projeto findProjeto(int id){
+        return em.find(Projeto.class, id);
     }
 
     public List<Projeto> getAllProjetos() {

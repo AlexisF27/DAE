@@ -61,5 +61,29 @@ public class EstruturaServices {
         );
         return Response.status(Response.Status.CREATED).build();
     }
+    @PUT
+    @Path("/{nome}")
+    public Response updateNewEstrutura(EstructuraDTO estructuraDTO) throws MyEntityNotFoundException {
+
+        estructuraBean.updateEstrutura(estructuraDTO.getNome(),
+                estructuraDTO.getTipoMaterial(),
+                estructuraDTO.getNb(),
+                estructuraDTO.getLVAo(),
+                estructuraDTO.getQ(),
+                estructuraDTO.getProjetoCode()
+                );
+
+        return Response.status(Response.Status.CREATED).build();
+    }
+
+    @DELETE
+    @Path("/{nome}")
+    public Response removeNewEstrutura(@PathParam("nome") String nome) throws MyEntityNotFoundException {
+
+        estructuraBean.deleteEstrutura(nome);
+
+        return Response.status(Response.Status.CREATED).build();
+    }
+
 
 }

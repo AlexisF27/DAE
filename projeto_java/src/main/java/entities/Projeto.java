@@ -16,7 +16,7 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(
                 name = "getAllProjetos",
-                query = "SELECT p FROM Projeto p ORDER BY p.cliente.username" // JPQL
+                query = "SELECT p FROM Projeto p ORDER BY p.nome" // JPQL
         )
 })
 
