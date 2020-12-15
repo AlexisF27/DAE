@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.security.Provider;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -28,6 +29,8 @@ public class Cliente extends User implements Serializable {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private Set<Projeto> projetos;
+    @OneToMany(mappedBy = "cliente")
+    public List<Documento> documentos;
 
 
     public Cliente() {
@@ -75,6 +78,18 @@ public class Cliente extends User implements Serializable {
 
     public void setMorada(String morada) {
         this.morada = morada;
+    }
+
+    public void addDocument(Documento documento) {
+        if(documentos.contains(documento) && documento == null) {
+           return;
+        }
+        documentos.add(documento);
+    }
+
+    public void removeDocumento(Documento documento) {
+        if(!documentos.contains(documento) && documento == null)
+            documentos.remove(documento);
     }
 
 }

@@ -77,13 +77,13 @@ public class ProjetoBean {
         }
         Projetista projetista = em.find(Projetista.class, projeto.getProjetista().getUsername());
 
-        em.remove(projeto);
         projetista.removeProjeto(projeto);
 
         if(projeto.getCliente() != null){
             Cliente cliente = em.find(Cliente.class, projeto.getCliente().getUsername());
             cliente.removeProjeto(projeto);
         }
+        em.remove(projeto);
     }
 
     public void enrollsProjetoInProjetista(int id, String projetistaCode){

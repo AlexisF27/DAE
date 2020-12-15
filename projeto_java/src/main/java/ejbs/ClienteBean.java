@@ -37,5 +37,8 @@ public class ClienteBean {
         }
     }
 
+    public Cliente findCliente(String username){
+        return em.find(Cliente.class,username);
+    }
 
 }
