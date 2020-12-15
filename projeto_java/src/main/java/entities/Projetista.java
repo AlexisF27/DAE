@@ -6,6 +6,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -13,16 +15,17 @@ import java.util.Set;
 public class Projetista extends User implements Serializable {
 
     @OneToMany(mappedBy = "projetista", cascade = CascadeType.REMOVE)
-    private Set<Projeto> projetos;
+    private List<Projeto> projetos;
     @Version
     private int version;
 
     public Projetista() {
+        projetos = new LinkedList<>();
     }
 
     public Projetista(String username, String password, @NotNull String nome, @Email @NotNull String mail) {
         super(username,password,nome, mail);
-        projetos = new HashSet<>();
+        projetos = new LinkedList<>();
     }
 
 
@@ -34,12 +37,12 @@ public class Projetista extends User implements Serializable {
     }
 
 
-    public Set<Projeto> getProjetos() {
+    public List<Projeto> getProjetos() {
         return projetos;
     }
 
 
-    public void setProjetos(Set<Projeto> projetos) {
+    public void setProjetos(List<Projeto> projetos) {
         this.projetos = projetos;
     }
 

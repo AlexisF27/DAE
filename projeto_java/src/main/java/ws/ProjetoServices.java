@@ -9,6 +9,7 @@ import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
 import exceptions.MyEntityNotFoundException;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -79,6 +80,7 @@ public class ProjetoServices {
 
     @GET
     @Path("/")
+    @RolesAllowed({"Projetista"})
     public List<ProjetoDTO> getAllProjetosWS(){
         return toDTOs(projetoBean.getAllProjetos());
     }
@@ -117,7 +119,7 @@ public class ProjetoServices {
 
     @GET
     @Path("{id}/estruturas")
-    public Response getStudentSubjects(@PathParam("id") int id) throws MyEntityNotFoundException{
+    public Response getProjetosEstruturas(@PathParam("id") int id) throws MyEntityNotFoundException{
         Projeto projeto = projetoBean.findProjeto(id);
         if(projeto == null){
             throw new MyEntityNotFoundException("Projeto with id " + id + " not found");

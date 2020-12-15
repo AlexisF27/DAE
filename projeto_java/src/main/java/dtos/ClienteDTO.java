@@ -1,8 +1,12 @@
 package dtos;
 
 import entities.PessoaContacto;
+import entities.Projeto;
 
+import javax.ws.rs.core.Link;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ClienteDTO implements Serializable {
     private String username;
@@ -11,8 +15,10 @@ public class ClienteDTO implements Serializable {
     private String password;
     private String mail;
     private PessoaContacto pessoaContacto;
+    private List<Projeto> projetos;
 
     public ClienteDTO() {
+        projetos = new LinkedList<>();
     }
 
     public ClienteDTO(String username, String nome,String password, String morada, String mail, PessoaContacto pessoaContacto) {
@@ -22,6 +28,7 @@ public class ClienteDTO implements Serializable {
         this.morada = morada;
         this.mail = mail;
         this.pessoaContacto = pessoaContacto;
+        projetos = new LinkedList<>();
     }
 
     public String getPassword() {

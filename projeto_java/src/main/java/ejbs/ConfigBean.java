@@ -45,7 +45,8 @@ public class ConfigBean {
             clienteBean.create("cliente1", "Alexis", "Leiria", "jalskfdja","alexis@mail.pt", new PessoaContacto("Alexis", "alexis@mail.pt", 999999999));
 
             System.out.println("++++++++++++++\n"+"CREATING PROJETISTA .......\n"+"+++++++++++++");
-            projetistaBean.create("projetista1", "kjalksdjfs","Hola", "hola@hola.pt");
+            projetistaBean.create("projetista1", "123","Hola", "hola@hola.pt");
+            projetistaBean.create("projetista2", "123", "pl2", "pl@mail.pt");
 
             System.out.println("++++++++++++++\n"+"CRATING FABRICANTE .......\n"+"+++++++++++++");
             fabricanteBean.create("fabricante1","Toto","kjaslfkjas","toto@mail.pt");
@@ -56,7 +57,6 @@ public class ConfigBean {
             projetoBean.create(3, "SegundoProjeto",  "projetista1");
             projetoBean.create(4, "CuartoProjeto", "projetista1");
 
-
             System.out.println("++++++++++++++\n"+"ENROLLING PROJECT - PROJETISTA .......\n"+"+++++++++++++");
             projetoBean.enrollsProjetoInProjetista(2,"projetista1");
 
@@ -64,6 +64,8 @@ public class ConfigBean {
             //Materiales
             materialBean.create("Section Z 220 BF","fabricante1");
             materialBean.create("Section C 220 BF","fabricante1");
+            materialBean.create("Section F 220 BF", "fabricante2");
+            materialBean.enrollsMaterialFabricante("Section F 220 BF","fabricante2");
             //Variantes
             System.out.println("++++++++++++++\n"+"CRATING VARIANTES .......\n"+"+++++++++++++");
             varianteBean.create(1, "Section C 220 BF", "C 120/50/21 x 1.5", 13846, 13846, 375, 220000);

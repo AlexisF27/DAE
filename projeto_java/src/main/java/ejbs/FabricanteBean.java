@@ -29,6 +29,10 @@ public class FabricanteBean {
         }
     }
 
+    public Fabricante findFabricante(String username){
+        return em.find(Fabricante.class, username);
+    }
+
 
 
 

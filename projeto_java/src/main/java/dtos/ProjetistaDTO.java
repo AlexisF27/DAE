@@ -1,17 +1,25 @@
 package dtos;
 
+import entities.Projeto;
+
+import java.util.LinkedList;
+import java.util.List;
+
 public class ProjetistaDTO {
     private String username;
     private String nome;
     private String mail;
+    private List<Projeto> projetos;
 
     public ProjetistaDTO() {
+        projetos = new LinkedList<>();
     }
 
     public ProjetistaDTO(String username, String nome, String mail) {
         this.username = username;
         this.nome = nome;
         this.mail = mail;
+        projetos = new LinkedList<>();
     }
 
     public String getUsername() {
@@ -36,5 +44,13 @@ public class ProjetistaDTO {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
     }
 }

@@ -1,6 +1,7 @@
 package ejbs;
 
 import entities.Cliente;
+import entities.Material;
 import entities.Projetista;
 import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
@@ -29,6 +30,11 @@ public class ProjetistaBean {
             throw new MyConstraintViolationException(e);
         }
     }
+
+    public Projetista findProjetista(String username){
+        return em.find(Projetista.class, username);
+    }
+
 
 
 }

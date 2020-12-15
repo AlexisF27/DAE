@@ -72,4 +72,17 @@ public class MaterialBean {
         fabricante.removeMaterial(material);
 
     }
+
+    public void enrollsMaterialFabricante(String nome, String fabricanteCode){
+        Material material = entityManager.find(Material.class,nome);
+        if(material == null){
+            throw new IllegalArgumentException();
+        }
+        Fabricante fabricante = entityManager.find(Fabricante.class,fabricanteCode);
+        if(fabricante == null){
+            throw new IllegalArgumentException();
+        }
+        fabricante.addMateriales(material);
+        material.setFabricante(fabricante);
+    }
 }

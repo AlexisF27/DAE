@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.security.Provider;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -28,27 +29,27 @@ public class Cliente extends User implements Serializable {
     protected PessoaContacto pessoaContacto;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
-    private Set<Projeto> projetos;
+    private List<Projeto> projetos;
     @OneToMany(mappedBy = "cliente")
     public List<Documento> documentos;
 
 
     public Cliente() {
-
+        projetos = new LinkedList<>();
     }
 
     public Cliente(String username, @NotNull String nome,@NotNull String password, @NotNull String morada, @Email @NotNull String mail,@NotNull PessoaContacto pessoaContacto) {
         super(username,nome,password,mail);
         this.morada = morada;
         this.pessoaContacto = pessoaContacto;
-        projetos = new HashSet<>();
+        projetos = new LinkedList<>();
     }
 
-    public Set<Projeto> getProjetos() {
+    public List<Projeto> getProjetos() {
         return projetos;
     }
 
-    public void setProjetos(Set<Projeto> projetos) {
+    public void setProjetos(List<Projeto> projetos) {
         this.projetos = projetos;
     }
 
