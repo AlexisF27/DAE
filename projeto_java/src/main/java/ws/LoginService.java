@@ -2,6 +2,7 @@ package ws;
 
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import dtos.AuthDTO;
 import ejbs.UserBean;
 import entities.User;
@@ -27,38 +28,20 @@ public class LoginService {
     private SecurityContext securityContext;
 
     @POST
-    @Path("login")
-    @Consumes(MediaType.APPLICATION_JSON) // use MediaType.APPLICATION_FORM_URLENCODED for the http request files
-    public Response login(AuthDTO authDTO) {
-
+    @Path("/token")
+    @Produces(MediaType.APPLICATION_JSON) @Consumes(MediaType.APPLICATION_JSON)
+    public Response authenticateUser(AuthDTO authDTO) {
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         try {
             User user = userBean.authenticate(authDTO.getUsername(), authDTO.getPassword());
-
-            if (user == null) {
-                throw new Exception("Can't authenticate with provided credentials");
-            }
-
-            logger.info("Generating JWT for user " + user.getUsername());
-
-            String token = jwtBean.createJwt(user.getUsername(), new String[]{user.getClass().getSimpleName()});
-            return Response.ok(new Jwt(token)).build();
-        } catch (Exception e) {
-            logger.info(e.getMessage());
-            return Response.status(Response.Status.UNAUTHORIZED).build();
-        }
-    }
-
-    @POST
-    @Path("/token")
-    @Produces(MediaType.APPLICATION_JSON) @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response authenticateUser(@FormParam("username") String username,
-                                     @FormParam("password") String password) {
-        try {
-            User user = userBean.authenticate(username, password); if (user != null) {
+            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+            if (user != null) {
                 if (user.getUsername() != null) {
                     logger.info("Generating JWT for user " + user.getUsername());
                 }
+                System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
                 String token = jwtBean.createJwt(user.getUsername(), new String[]{user.getClass().getSimpleName()});
+                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
                 return Response.ok(new Jwt(token)).build(); }
         } catch (Exception e) { logger.info(e.getMessage());
         }

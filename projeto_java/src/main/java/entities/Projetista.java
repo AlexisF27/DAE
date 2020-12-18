@@ -23,8 +23,8 @@ public class Projetista extends User implements Serializable {
         projetos = new LinkedList<>();
     }
 
-    public Projetista(String username, String password, @NotNull String nome, @Email @NotNull String mail) {
-        super(username,password,nome, mail);
+    public Projetista(String username,  @NotNull String nome, String password, @Email @NotNull String mail) {
+        super(username,nome,password, mail);
         projetos = new LinkedList<>();
     }
 

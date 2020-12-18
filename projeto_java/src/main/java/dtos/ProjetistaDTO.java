@@ -10,16 +10,26 @@ public class ProjetistaDTO {
     private String nome;
     private String mail;
     private List<Projeto> projetos;
+    private String password;
 
     public ProjetistaDTO() {
         projetos = new LinkedList<>();
     }
 
-    public ProjetistaDTO(String username, String nome, String mail) {
+    public ProjetistaDTO(String username, String nome,String password, String mail) {
         this.username = username;
         this.nome = nome;
+        this.password = password;
         this.mail = mail;
         projetos = new LinkedList<>();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUsername() {

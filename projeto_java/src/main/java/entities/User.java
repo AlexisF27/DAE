@@ -31,7 +31,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, @NotNull String nome, @NotNull String password, @Email @NotNull String email) {
+    public User(String username, @NotNull String nome,@NotNull String password, @Email @NotNull String email) {
         this.username = username;
         this.nome = nome;
         this.password = hashPassword(password);

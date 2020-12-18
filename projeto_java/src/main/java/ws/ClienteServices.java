@@ -22,6 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RolesAllowed({"Cliente"})
 @Path("/clientes")
 @Consumes({MediaType.APPLICATION_JSON}) // injects header “Accept: application/json”
 @Produces({MediaType.APPLICATION_JSON}) // injects header “Content-Type: application/json”
@@ -76,11 +77,10 @@ public class ClienteServices {
     }
 
 
-
     @GET
     @Path("{username}/projetos")
     public Response getClientesProjetos(@PathParam("username") String username) throws MyEntityNotFoundException {
-        Cliente cliente = clienteBean.findCliente(username);
+       Cliente cliente = clienteBean.findCliente(username);
 
         if(cliente == null){
             throw new MyEntityNotFoundException("Cliente with id " + username + " not found");

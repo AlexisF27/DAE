@@ -42,14 +42,14 @@ public class ConfigBean {
 
 
             System.out.println("++++++++++++++\n"+"CREATING CLIENT .......\n"+"+++++++++++++");
-            clienteBean.create("cliente1", "Alexis", "Leiria", "jalskfdja","alexis@mail.pt", new PessoaContacto("Alexis", "alexis@mail.pt", 999999999));
+            clienteBean.create("cliente1", "Alexis", "Leiria", "123","alexis@mail.pt", new PessoaContacto("Alexis", "alexis@mail.pt", 999999999));
 
             System.out.println("++++++++++++++\n"+"CREATING PROJETISTA .......\n"+"+++++++++++++");
-            projetistaBean.create("projetista1", "123","Hola", "hola@hola.pt");
-            projetistaBean.create("projetista2", "123", "pl2", "pl@mail.pt");
+            projetistaBean.create("projetista1", "Hola","123", "hola@hola.pt");
+            projetistaBean.create("projetista2", "Chao", "123", "pl@mail.pt");
 
             System.out.println("++++++++++++++\n"+"CRATING FABRICANTE .......\n"+"+++++++++++++");
-            fabricanteBean.create("fabricante1","Toto","kjaslfkjas","toto@mail.pt");
+            fabricanteBean.create("fabricante1","Toto","123","toto@mail.pt");
             fabricanteBean.create("fabricante2", "asdasd","123","f@mail.pt");
 
             System.out.println("++++++++++++++\n"+"CRATING PROJECT .......\n"+"+++++++++++++");
@@ -59,6 +59,10 @@ public class ConfigBean {
 
             System.out.println("++++++++++++++\n"+"ENROLLING PROJECT - PROJETISTA .......\n"+"+++++++++++++");
             projetoBean.enrollsProjetoInProjetista(2,"projetista1");
+
+
+            System.out.println("++++++++++++++\n"+"ENROLLING PROJECT - CLIENTE .......\n"+"+++++++++++++");
+            projetoBean.enrollsProjetoInCliente(2,"cliente1");
 
             System.out.println("++++++++++++++\n"+"CRATING MATERIALES .......\n"+"+++++++++++++");
             //Materiales

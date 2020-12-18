@@ -18,13 +18,13 @@ public class ProjetistaBean {
     @PersistenceContext
     EntityManager em;
 
-    public void create(String username, String password,String name, String mail) throws MyEntityExistsException,MyConstraintViolationException {
+    public void create(String username,String name,String password, String mail) throws MyEntityExistsException,MyConstraintViolationException {
         Projetista projetista = em.find(Projetista.class,username);
         if(projetista != null){
             throw new MyEntityExistsException("O projetista ja foi criado");
         }
         try{
-        projetista = new Projetista(username,password,name,mail);
+        projetista = new Projetista(username,name,password,mail);
         em.persist(projetista);
         }catch (ConstraintViolationException e){
             throw new MyConstraintViolationException(e);

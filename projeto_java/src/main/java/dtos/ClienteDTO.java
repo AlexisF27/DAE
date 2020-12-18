@@ -1,5 +1,6 @@
 package dtos;
 
+import entities.Documento;
 import entities.PessoaContacto;
 import entities.Projeto;
 
@@ -16,9 +17,11 @@ public class ClienteDTO implements Serializable {
     private String mail;
     private PessoaContacto pessoaContacto;
     private List<Projeto> projetos;
+    private List<Documento> documentos;
 
     public ClienteDTO() {
         projetos = new LinkedList<>();
+        documentos = new LinkedList<>();
     }
 
     public ClienteDTO(String username, String nome,String password, String morada, String mail, PessoaContacto pessoaContacto) {
@@ -29,6 +32,23 @@ public class ClienteDTO implements Serializable {
         this.mail = mail;
         this.pessoaContacto = pessoaContacto;
         projetos = new LinkedList<>();
+        documentos = new LinkedList<>();
+    }
+
+    public List<Documento> getDocumentos() {
+        return documentos;
+    }
+
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
+    }
+
+    public void setDocumentos(List<Documento> documentos) {
+        this.documentos = documentos;
     }
 
     public String getPassword() {

@@ -80,7 +80,6 @@ public class ProjetoServices {
 
     @GET
     @Path("/")
-    @RolesAllowed({"Projetista"})
     public List<ProjetoDTO> getAllProjetosWS(){
         return toDTOs(projetoBean.getAllProjetos());
     }
@@ -94,6 +93,17 @@ public class ProjetoServices {
                 projetoDTO.getProjetistaCode()
         );
         return Response.status(Response.Status.CREATED).build();
+    }
+
+    @POST
+    @Path("/enrollCliente")
+    public Response enrollClienteProjeto(ProjetoDTO projetoDTO){
+
+
+
+        projetoBean.enrollsProjetoInCliente(projetoDTO.getId(),projetoDTO.getClienteCode());
+
+        return Response.status(Response.Status.OK).build();
     }
 
     @PUT

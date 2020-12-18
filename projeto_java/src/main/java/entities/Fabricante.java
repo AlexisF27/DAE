@@ -23,7 +23,7 @@ public class Fabricante extends User implements Serializable {
         materiales =  new LinkedList<>();
     }
 
-    public Fabricante(String username,@NotNull String password ,@NotNull String name, @Email @NotNull String mail) {
+    public Fabricante(String username ,@NotNull String name,@NotNull String password, @Email @NotNull String mail) {
         super(username,name,password,mail);
         materiales =  new LinkedList<>();
     }

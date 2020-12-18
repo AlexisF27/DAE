@@ -18,6 +18,7 @@ public class UserBean {
         }
         throw new Exception("Failed logging in with username '" + username + "': unknown username or wrong password");
     }
+
 }
 
 

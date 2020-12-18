@@ -36,13 +36,23 @@ public class Cliente extends User implements Serializable {
 
     public Cliente() {
         projetos = new LinkedList<>();
+        documentos = new LinkedList<>();
     }
 
-    public Cliente(String username, @NotNull String nome,@NotNull String password, @NotNull String morada, @Email @NotNull String mail,@NotNull PessoaContacto pessoaContacto) {
+    public Cliente(String username,@NotNull String nome,@NotNull String password,  @NotNull String morada, @Email @NotNull String mail,@NotNull PessoaContacto pessoaContacto) {
         super(username,nome,password,mail);
         this.morada = morada;
         this.pessoaContacto = pessoaContacto;
         projetos = new LinkedList<>();
+        documentos = new LinkedList<>();
+    }
+
+    public List<Documento> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<Documento> documentos) {
+        this.documentos = documentos;
     }
 
     public List<Projeto> getProjetos() {

@@ -2,13 +2,15 @@ package dtos;
 
 
 public class EmailDTO {
+    private String clienteCode;
     private String subject;
     private String message;
 
     public EmailDTO() {
     }
 
-    public EmailDTO(String subject, String message) {
+    public EmailDTO(String clienteCode, String subject, String message) {
+        this.clienteCode = clienteCode;
         this.subject = subject;
         this.message = message;
     }
@@ -28,4 +30,13 @@ public class EmailDTO {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getClienteCode() {
+        return clienteCode;
+    }
+
+    public void setClienteCode(String clienteCode) {
+        this.clienteCode = clienteCode;
+    }
 }
+

@@ -17,7 +17,7 @@ import javax.ws.rs.GET;
 import java.util.List;
 
 @Stateless
-public class ClienteBean {
+public class    ClienteBean {
     @PersistenceContext
     EntityManager em;
 

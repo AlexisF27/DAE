@@ -13,6 +13,7 @@ import entities.Projetista;
 import entities.Projeto;
 import exceptions.MyEntityNotFoundException;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -21,6 +22,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@RolesAllowed({"Fabricante"})
 @Path("/fabricantes")
 @Consumes({MediaType.APPLICATION_JSON}) // injects header “Accept: application/json”
 @Produces({MediaType.APPLICATION_JSON})

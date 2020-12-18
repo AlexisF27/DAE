@@ -7,6 +7,7 @@ import dtos.ProjetoDTO;
 import ejbs.ClienteBean;
 import ejbs.EmailBean;
 import ejbs.ProjetistaBean;
+import ejbs.ProjetoBean;
 import entities.Cliente;
 import entities.Estructura;
 import entities.Projetista;
@@ -14,6 +15,7 @@ import entities.Projeto;
 import exceptions.MyEntityNotFoundException;
 
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.mail.MessagingException;
 import javax.ws.rs.*;
@@ -24,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RolesAllowed({"Projetista"})
 @Path("/projetistas")
 @Consumes({MediaType.APPLICATION_JSON}) // injects header “Accept: application/json”
 @Produces({MediaType.APPLICATION_JSON})
@@ -35,6 +38,9 @@ public class ProjetistaServices {
     ClienteBean clienteBean;
 
     @EJB
+    ProjetoBean projetoBean;
+
+    @EJB
     EmailBean emailBean;
 
     private ProjetistaDTO toDTO(Projetista projetista) {
@@ -42,6 +48,7 @@ public class ProjetistaServices {
         ProjetistaDTO projetistaDTO =  new ProjetistaDTO(
                 projetista.getUsername(),
                 projetista.getNome(),
+                projetista.getPassword(),
                 projetista.getEmail()
         );
 
@@ -67,6 +74,7 @@ public class ProjetistaServices {
         return new ProjetistaDTO(
                 projetista.getUsername(),
                 projetista.getNome(),
+                projetista.getPassword(),
                 projetista.getEmail()
         );
     }
@@ -79,9 +87,11 @@ public class ProjetistaServices {
         return projetos.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
+
     @GET
     @Path("{username}/projetos")
     public Response getProjetistasProjetos(@PathParam("username") String username) throws MyEntityNotFoundException {
+
         Projetista projetista = projetistaBean.findProjetista(username);
 
         if(projetista == null){
@@ -95,14 +105,25 @@ public class ProjetistaServices {
 
     @POST
     @Path("/{username}/email")
-    public Response sendEmail(EmailDTO email, String clienteCode)
+    public Response sendEmail(EmailDTO email)
             throws MyEntityNotFoundException, MessagingException {
 
-        Cliente cliente = clienteBean.findCliente(clienteCode);
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + email.getMessage());
+
+        Cliente cliente = clienteBean.findCliente(email.getClienteCode());
         if (cliente == null) {
-            throw new MyEntityNotFoundException("Student with username '" + clienteCode
-                    + "' not found in our records.");
+            throw new MyEntityNotFoundException("Cliente com username '" + email.getClienteCode()
+                    + "' nao se encontra.");
         }
+
+        /*
+        Projeto projeto = projetoBean.findProjeto(projetoCode);
+        if (projeto == null) {
+            throw new MyEntityNotFoundException("Projeto com id '" + projetoCode
+                    + "' nao se encontra.");
+        }
+        */
+
         emailBean.send(cliente.getEmail(), email.getSubject(), email.getMessage());
         return Response.status(Response.Status.OK).entity("E-mail sent").build();
     }
