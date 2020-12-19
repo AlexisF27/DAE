@@ -67,7 +67,7 @@ public class EstructuraBean {
         Projeto projeto = entityManager.find(Projeto.class, estructura.getProjeto().getId());
 
         projeto.removeEstrucutras(estructura);
-        unrollEstruturaProjeto(projeto.getId(),estructura.getNome());
+
         entityManager.remove(estructura);
 
 
@@ -114,32 +114,8 @@ public class EstructuraBean {
         }
     }
 
-    public void enrollsEstruturaInProjeto(int id, String estruturaCode) throws MyEntityNotFoundException {
-        Projeto projeto = entityManager.find(Projeto.class,id);
-        if(projeto == null){
-            throw new MyEntityNotFoundException("Material com nome " + id + " nao encontrada.");
-        }
-        Estructura estructura = entityManager.find(Estructura.class,estruturaCode);
 
-        if(estructura == null){
-            throw new MyEntityNotFoundException("Material com nome " + estruturaCode + " nao encontrada.");
-        }
-        projeto.addEstructuras(estructura);
-        estructura.setProjeto(projeto);
-    }
 
-    public void unrollEstruturaProjeto(int id, String estruturaCode) throws MyEntityNotFoundException {
-        Projeto projeto = entityManager.find(Projeto.class,id);
-        if(projeto == null){
-            throw new MyEntityNotFoundException("Material com nome " + id + " nao encontrada.");
-        }
-        Estructura estructura = entityManager.find(Estructura.class,estruturaCode);
 
-        if(estructura == null){
-            throw new MyEntityNotFoundException("Material com nome " + estruturaCode + " nao encontrada.");
-        }
-        projeto.removeEstrucutras(estructura);
-        estructura.setProjeto(null);
-    }
 
 }
