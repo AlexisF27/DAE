@@ -69,11 +69,13 @@ public class ConfigBean {
             materialBean.create("Section Z 220 BF","fabricante1");
             materialBean.create("Section C 220 BF","fabricante1");
             materialBean.create("Section F 220 BF", "fabricante2");
+            materialBean.create("Material2", "fabricante2");
             materialBean.enrollsMaterialFabricante("Section F 220 BF","fabricante2");
             //Variantes
             System.out.println("++++++++++++++\n"+"CRATING VARIANTES .......\n"+"+++++++++++++");
             varianteBean.create(1, "Section C 220 BF", "C 120/50/21 x 1.5", 13846, 13846, 375, 220000);
             varianteBean.create(2, "Section C 220 BF", "C 120/60/13 x 2.0", 18738, 18738, 500, 220000);
+            varianteBean.create(3, "Material2", "C 120/60/13 x 2.0", 18738, 18738, 500, 220000);
             System.out.println("++++++++++++++\n"+"Prueba .......\n"+"+++++++++++++");
             Variante variante1 = varianteBean.getVariante(1);
 

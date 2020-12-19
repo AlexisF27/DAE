@@ -73,6 +73,14 @@ public class Variante {
         this.estructuras = estructuras;
     }
 
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
     public void addEstructura(Estructura s){
         estructuras.add(s);
     }
