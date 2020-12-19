@@ -60,42 +60,59 @@ public class MaterialBean {
         entityManager.merge(material);
     }
     public void deleteMaterial(String name)throws MyEntityNotFoundException{
-
         Material material = findMaterial(name);
         System.out.printf("Material a remover "+ material);
         if(material == null) {
             throw new MyEntityNotFoundException("Material com nome " + name + " nao encontrada.");
         }
         Fabricante fabricante = entityManager.find(Fabricante.class, material.getFabricante().getUsername());
+        if(fabricante == null) {
+            throw new MyEntityNotFoundException("Material com nome " + material.getFabricante().getUsername() + " nao encontrada.");
+        }
         fabricante.removeMaterial(material);
         unrollMaterialFabricante(material.getNome(),fabricante.getUsername());
         entityManager.remove(material);
-
-
     }
 
-    public void enrollsMaterialFabricante(String nome, String fabricanteCode){
+    public void enrollsMaterialFabricante(String nome, String fabricanteCode) throws MyEntityNotFoundException {
         Material material = entityManager.find(Material.class,nome);
+        if(material == null){
+            throw new MyEntityNotFoundException("Material com nome " + nome + " nao encontrada.");
+        }
+        Fabricante fabricante = entityManager.find(Fabricante.class,fabricanteCode);
+        if(fabricante == null){
+            throw new MyEntityNotFoundException("Material com nome " + fabricanteCode + " nao encontrada.");
+        }
+        /*
         if(material == null){
             throw new IllegalArgumentException();
         }
         Fabricante fabricante = entityManager.find(Fabricante.class,fabricanteCode);
         if(fabricante == null){
             throw new IllegalArgumentException();
-        }
+        }*/
         fabricante.addMateriales(material);
         material.setFabricante(fabricante);
     }
 
-    public void unrollMaterialFabricante(String nome, String fabricanteCode){
+    public void unrollMaterialFabricante(String nome, String fabricanteCode) throws MyEntityNotFoundException {
         Material material = entityManager.find(Material.class,nome);
         if(material == null){
-            throw new IllegalArgumentException();
+            throw new MyEntityNotFoundException("Material com nome " + nome + " nao encontrada.");
         }
         Fabricante fabricante = entityManager.find(Fabricante.class,fabricanteCode);
         if(fabricante == null){
-            throw new IllegalArgumentException();
+            throw new MyEntityNotFoundException("Material com nome " + fabricanteCode + " nao encontrada.");
         }
+        /*
+        if(material == null){
+            throw new IllegalArgumentException(nome);
+        }
+        Fabricante fabricante = entityManager.find(Fabricante.class,fabricanteCode);
+        if(fabricante == null){
+            throw new IllegalArgumentException(fabricanteCode);
+        }
+        */
         fabricante.removeMaterial(material);
         material.setFabricante(null);
     }

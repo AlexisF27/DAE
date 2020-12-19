@@ -21,7 +21,7 @@ public class ProjetistaBean {
     public void create(String username,String name,String password, String mail) throws MyEntityExistsException,MyConstraintViolationException {
         Projetista projetista = em.find(Projetista.class,username);
         if(projetista != null){
-            throw new MyEntityExistsException("O projetista ja foi criado");
+            throw new MyEntityExistsException("O projetista"+ projetista.getUsername() +" ja foi criado");
         }
         try{
         projetista = new Projetista(username,name,password,mail);

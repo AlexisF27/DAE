@@ -109,7 +109,7 @@ public class ConfigBean {
             //Válido para variantes de geometria simétrica, em que os mcr_p são iguais aos mcr_n
             variante2.setMcr_n((LinkedHashMap<Double, Double>) variante2.getMcr_p().clone());
 
-//EXEMPLO DA SIMULAÇÃO PARA DUAS VARIANTES DO PERFIL C, E PARA UMA ESTRUTURA DE 3 vãos (nb) de 3m cada (LVao) E SOBRECARGA 500000 (q)
+            //EXEMPLO DA SIMULAÇÃO PARA DUAS VARIANTES DO PERFIL C, E PARA UMA ESTRUTURA DE 3 vãos (nb) de 3m cada (LVao) E SOBRECARGA 500000 (q)
             if(simulacaoBean.simulaVariante(3, 3.0, 500000, variante1)){
                 System.out.println(variante1.getNome() + " pode ser usada.");
             }else{

@@ -19,7 +19,7 @@ public class FabricanteBean {
     public void create(String username, String name,String password, String mail) throws MyEntityExistsException, MyConstraintViolationException {
         Fabricante fabricante = em.find(Fabricante.class,username);
         if(fabricante != null){
-            throw new MyEntityExistsException("O fabricante ja foi criado");
+            throw new MyEntityExistsException("O fabricante "+username+" ja foi criado");
         }
         try{
             fabricante = new Fabricante(username,name,password,mail);

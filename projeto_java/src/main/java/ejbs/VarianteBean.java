@@ -23,8 +23,8 @@ public class VarianteBean {
     public void create(int codigo, String nomeProduto, String name, double weff_p, double weff_n, double ar, double sigmaC)
             throws MyEntityExistsException,MyEntityNotFoundException, MyConstraintViolationException {
         try{
-        Material material = entityManager.find(Material.class, nomeProduto);
-        Variante variante = entityManager.find(Variante.class, codigo);
+            Material material = entityManager.find(Material.class, nomeProduto);
+            Variante variante = entityManager.find(Variante.class, codigo);
             variante = new Variante(codigo,material,name,weff_p,weff_n,ar,sigmaC);
             entityManager.persist(variante);
         }catch (ConstraintViolationException e){

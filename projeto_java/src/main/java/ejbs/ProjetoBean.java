@@ -70,7 +70,7 @@ public class ProjetoBean {
     public void deleteProjeto(int id)throws MyEntityNotFoundException{
 
         Projeto projeto = findProjeto(id);
-        System.out.printf("Projeto a remover "+ projeto);
+        System.out.print("Projeto a remover "+ projeto);
 
         if(projeto == null) {
             throw new MyEntityNotFoundException("Projeot com id " + id + " nao encontrada.");
