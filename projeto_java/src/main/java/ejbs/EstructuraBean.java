@@ -1,9 +1,6 @@
 package ejbs;
 
-import entities.Estructura;
-import entities.Projetista;
-import entities.Projeto;
-import entities.TipoEstructura;
+import entities.*;
 import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
 import exceptions.MyEntityNotFoundException;
@@ -70,6 +67,7 @@ public class EstructuraBean {
         Projeto projeto = entityManager.find(Projeto.class, estructura.getProjeto().getId());
 
         projeto.removeEstrucutras(estructura);
+        unrollEstruturaProjeto(projeto.getId(),estructura.getNome());
         entityManager.remove(estructura);
 
 
@@ -82,6 +80,34 @@ public class EstructuraBean {
             throw new EJBException("ERROR_RETRIEVING_ESTRUCTURAS", e);
         }
 
+    }
+
+    public void enrollsEstruturaInProjeto(int id, String estruturaCode){
+        Projeto projeto = entityManager.find(Projeto.class,id);
+        if(projeto == null){
+            throw new IllegalArgumentException();
+        }
+        Estructura estructura = entityManager.find(Estructura.class,estruturaCode);
+
+        if(estructura == null){
+            throw new IllegalArgumentException();
+        }
+        projeto.addEstructuras(estructura);
+        estructura.setProjeto(projeto);
+    }
+
+    public void unrollEstruturaProjeto(int id, String estruturaCode){
+        Projeto projeto = entityManager.find(Projeto.class,id);
+        if(projeto == null){
+            throw new IllegalArgumentException();
+        }
+        Estructura estructura = entityManager.find(Estructura.class,estruturaCode);
+
+        if(estructura == null){
+            throw new IllegalArgumentException();
+        }
+        projeto.removeEstrucutras(estructura);
+        estructura.setProjeto(null);
     }
 
 }

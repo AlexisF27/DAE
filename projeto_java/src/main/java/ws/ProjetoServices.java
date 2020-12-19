@@ -20,6 +20,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
+
 @Path("/projetos") // relative url web path for this service
 @Consumes({MediaType.APPLICATION_JSON}) // injects header “Accept: application/json”
 @Produces({MediaType.APPLICATION_JSON})
@@ -126,6 +127,7 @@ public class ProjetoServices {
 
         return Response.status(Response.Status.CREATED).build();
     }
+
 
     @GET
     @Path("{id}/estruturas")

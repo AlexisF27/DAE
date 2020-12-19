@@ -31,17 +31,13 @@ public class LoginService {
     @Path("/token")
     @Produces(MediaType.APPLICATION_JSON) @Consumes(MediaType.APPLICATION_JSON)
     public Response authenticateUser(AuthDTO authDTO) {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         try {
             User user = userBean.authenticate(authDTO.getUsername(), authDTO.getPassword());
-            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
             if (user != null) {
                 if (user.getUsername() != null) {
                     logger.info("Generating JWT for user " + user.getUsername());
                 }
-                System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC");
                 String token = jwtBean.createJwt(user.getUsername(), new String[]{user.getClass().getSimpleName()});
-                System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
                 return Response.ok(new Jwt(token)).build(); }
         } catch (Exception e) { logger.info(e.getMessage());
         }

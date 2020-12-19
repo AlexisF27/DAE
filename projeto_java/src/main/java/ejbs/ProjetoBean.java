@@ -82,7 +82,9 @@ public class ProjetoBean {
         if(projeto.getCliente() != null){
             Cliente cliente = em.find(Cliente.class, projeto.getCliente().getUsername());
             cliente.removeProjeto(projeto);
+            unrollProjetoinCliente(projeto.getId(),cliente.getUsername());
         }
+        unrollProjetoinProjetista(projeto.getId(),projetista.getUsername());
         em.remove(projeto);
     }
 
@@ -112,4 +114,31 @@ public class ProjetoBean {
         cliente.addProjetos(projeto);
         projeto.setCliente(cliente);
     }
+
+    public void unrollProjetoinProjetista(int id, String projetistaCode){
+        Projeto projeto = em.find(Projeto.class,id);
+        if(projeto == null){
+            throw new IllegalArgumentException();
+        }
+        Projetista projetista = em.find(Projetista.class,projetistaCode);
+        if(projetista == null){
+            throw new IllegalArgumentException();
+        }
+        projetista.removeProjeto(projeto);
+        projeto.setProjetista(null);
+    }
+
+    public void unrollProjetoinCliente(int id, String clienteCode){
+        Projeto projeto = em.find(Projeto.class,id);
+        if(projeto == null){
+            throw new IllegalArgumentException();
+        }
+        Cliente cliente = em.find(Cliente.class,clienteCode);
+        if(cliente == null){
+            throw new IllegalArgumentException();
+        }
+        cliente.removeProjeto(projeto);
+        projeto.setCliente(null);
+    }
+
 }

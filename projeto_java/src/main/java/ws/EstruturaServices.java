@@ -11,12 +11,14 @@ import exceptions.MyConstraintViolationException;
 import exceptions.MyEntityExistsException;
 import exceptions.MyEntityNotFoundException;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Path("/estruturas")
 @Consumes({MediaType.APPLICATION_JSON}) // injects header “Accept: application/json”
@@ -79,7 +81,6 @@ public class EstruturaServices {
     @DELETE
     @Path("/{nome}")
     public Response removeNewEstrutura(@PathParam("nome") String nome) throws MyEntityNotFoundException {
-        System.out.printf("uuuuuuuu");
         estructuraBean.deleteEstrutura(nome);
 
         return Response.status(Response.Status.CREATED).build();

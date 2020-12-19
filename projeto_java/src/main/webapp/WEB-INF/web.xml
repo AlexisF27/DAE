@@ -12,7 +12,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Projetos Projetista List</web-resource-name>
-            <url-pattern>/api/projetista/*</url-pattern>
+            <url-pattern>/api/projetistas/*</url-pattern>
             <http-method>GET</http-method>
         </web-resource-collection>
         <auth-constraint>
@@ -30,11 +30,24 @@
             <role-name>Cliente</role-name>
         </auth-constraint>
     </security-constraint>
+<!--
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Estruturas List</web-resource-name>
+            <url-pattern>/api/projetos/*</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Projetista</role-name>
+            <role-name>Cliente</role-name>
+        </auth-constraint>
+    </security-constraint>
+    -->
 
     <security-constraint>
     <web-resource-collection>
         <web-resource-name>Projetos Projetista create</web-resource-name>
-        <url-pattern>/api/projetista/*</url-pattern>
+        <url-pattern>/api/projetistas/*</url-pattern>
         <http-method>POST</http-method>
     </web-resource-collection>
         <auth-constraint>
@@ -42,6 +55,17 @@
         </auth-constraint>
     </security-constraint>
 
+    <!--<security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Projetisa Estruturas create</web-resource-name>
+            <url-pattern>/api/projetos/*</url-pattern>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Projetista</role-name>
+        </auth-constraint>
+    </security-constraint>
+-->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Fabricante Materiales create</web-resource-name>
@@ -56,7 +80,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Fabricante materiales list</web-resource-name>
-            <url-pattern>/api/fabricante/*</url-pattern>
+            <url-pattern>/api/fabricantes/*</url-pattern>
             <http-method>GET</http-method>
         </web-resource-collection>
         <auth-constraint>

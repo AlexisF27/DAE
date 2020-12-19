@@ -67,9 +67,10 @@ public class MaterialBean {
             throw new MyEntityNotFoundException("Material com nome " + name + " nao encontrada.");
         }
         Fabricante fabricante = entityManager.find(Fabricante.class, material.getFabricante().getUsername());
-
-        entityManager.remove(material);
         fabricante.removeMaterial(material);
+        unrollMaterialFabricante(material.getNome(),fabricante.getUsername());
+        entityManager.remove(material);
+
 
     }
 
@@ -84,5 +85,18 @@ public class MaterialBean {
         }
         fabricante.addMateriales(material);
         material.setFabricante(fabricante);
+    }
+
+    public void unrollMaterialFabricante(String nome, String fabricanteCode){
+        Material material = entityManager.find(Material.class,nome);
+        if(material == null){
+            throw new IllegalArgumentException();
+        }
+        Fabricante fabricante = entityManager.find(Fabricante.class,fabricanteCode);
+        if(fabricante == null){
+            throw new IllegalArgumentException();
+        }
+        fabricante.removeMaterial(material);
+        material.setFabricante(null);
     }
 }
