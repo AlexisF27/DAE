@@ -3,6 +3,8 @@ package entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,7 +34,7 @@ public class Estructura {
     @JoinTable(name = "ESTRUCTURA_VARIANTE",
             joinColumns =@JoinColumn(name = "ESTRUCTURA_NOME", referencedColumnName = "NOME") ,
             inverseJoinColumns = @JoinColumn(name = "VARIANTE_CODIGO", referencedColumnName = "CODIGO"))
-    Set<Variante> variantes;
+    private List<Variante> variantes;
     @ManyToOne
     @JoinColumn(name = "PROJETO_CODE")
     @NotNull
@@ -42,7 +44,7 @@ public class Estructura {
 
 
     public Estructura() {
-        this.variantes = new HashSet<>();
+        this.variantes = new LinkedList<>();
     }
 
     public Estructura(@NotNull String nome, @NotNull TipoEstructura tipoMaterial, @NotNull int nb, @NotNull double LVao, @NotNull int q,@NotNull Projeto projeto) {
@@ -51,22 +53,16 @@ public class Estructura {
         this.nb = nb;
         this.LVao = LVao;
         this.q = q;
-        this.variantes = new HashSet<>();
+        this.variantes = new LinkedList<>();
         this.projeto = projeto;
     }
 
-    @Override
-    public String toString() {
-        return "Estructura{" +
-                "nome='" + nome + '\'' +
-                ", tipoMaterial='" + tipoMaterial + '\'' +
-                ", nb=" + nb +
-                ", LVao=" + LVao +
-                ", q=" + q +
-                ", variantes=" + variantes +
-                ", projeto=" + projeto +
-                ", version=" + version +
-                '}';
+    public void addVariante(Variante s){
+        variantes.add(s);
+    }
+
+    public void removeVariante(Variante s){
+        variantes.remove(s);
     }
 
     public int getNb() {
@@ -109,11 +105,11 @@ public class Estructura {
         this.tipoMaterial = tipoMaterial;
     }
 
-    public Set<Variante> getVariantes() {
+    public List<Variante> getVariantes() {
         return variantes;
     }
 
-    public void setVariantes(Set<Variante> variantes) {
+    public void setVariantes(List<Variante> variantes) {
         this.variantes = variantes;
     }
 

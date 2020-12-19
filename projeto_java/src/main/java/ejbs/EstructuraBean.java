@@ -82,6 +82,38 @@ public class EstructuraBean {
 
     }
 
+    public void enrollEstructuraFromVariante(String nome, int varianteCode) throws MyEntityNotFoundException{
+        Estructura estructura = entityManager.find(Estructura.class, nome);
+        if (estructura == null) {
+            throw new MyEntityNotFoundException("Student with username " + nome + " not found.");
+        }
+        Variante variante = entityManager.find(Variante.class, varianteCode);
+        if (variante == null) {
+            throw new MyEntityNotFoundException("Subject with code " + varianteCode + " not found.");
+        }
+
+        if(!estructura.getVariantes().contains(variante)) {
+            estructura.addVariante(variante);
+            variante.addEstructura(estructura);
+        }
+    }
+
+    public void unrollEstructuraFromVariante(String nome, int varianteCode) throws MyEntityNotFoundException{
+        Estructura estructura = entityManager.find(Estructura.class, nome);
+        if (estructura == null) {
+            throw new MyEntityNotFoundException("Student with username " + nome + " not found.");
+        }
+        Variante variante = entityManager.find(Variante.class, varianteCode);
+        if (variante == null) {
+            throw new MyEntityNotFoundException("Subject with code " + varianteCode + " not found.");
+        }
+
+        if(estructura.getVariantes().contains(variante)) {
+            estructura.removeVariante(variante);
+            variante.removeEstructura(estructura);
+        }
+    }
+
     public void enrollsEstruturaInProjeto(int id, String estruturaCode) throws MyEntityNotFoundException {
         Projeto projeto = entityManager.find(Projeto.class,id);
         if(projeto == null){
@@ -92,16 +124,6 @@ public class EstructuraBean {
         if(estructura == null){
             throw new MyEntityNotFoundException("Material com nome " + estruturaCode + " nao encontrada.");
         }
-        /*
-        if(projeto == null){
-            throw new IllegalArgumentException();
-        }
-        Estructura estructura = entityManager.find(Estructura.class,estruturaCode);
-
-        if(estructura == null){
-            throw new IllegalArgumentException();
-        }
-         */
         projeto.addEstructuras(estructura);
         estructura.setProjeto(projeto);
     }
@@ -116,16 +138,6 @@ public class EstructuraBean {
         if(estructura == null){
             throw new MyEntityNotFoundException("Material com nome " + estruturaCode + " nao encontrada.");
         }
-        /*
-        if(projeto == null){
-            throw new IllegalArgumentException();
-        }
-        Estructura estructura = entityManager.find(Estructura.class,estruturaCode);
-
-        if(estructura == null){
-            throw new IllegalArgumentException();
-        }
-         */
         projeto.removeEstrucutras(estructura);
         estructura.setProjeto(null);
     }

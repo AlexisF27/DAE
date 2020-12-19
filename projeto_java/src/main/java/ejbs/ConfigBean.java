@@ -133,6 +133,12 @@ public class ConfigBean {
             //estructuraBean.create("PrimerEstrutura", TipoEstructura.Painel,1,11,2,2);
             //estructuraBean.create("PrimerEstrutura", TipoEstructura.Perfis,1,11,2,2);
 
+            System.out.println("++++++++++++++\n"+"ENROLLING ESTRUTURA - VARIANTE .......\n"+"+++++++++++++");
+            estructuraBean.enrollEstructuraFromVariante("SegundaEstrutura",1);
+            estructuraBean.enrollEstructuraFromVariante("SegundaEstrutura",2);
+            estructuraBean.unrollEstructuraFromVariante("SegundaEstrutura",1);
+
+
             System.out.println("++++++++++++++\n"+"ENROLLING ESTRUTURA - PROJETO .......\n"+"+++++++++++++");
       //      estructuraBean.enrollsEstruturaInProjeto(2,"PrimerEstrutura");
 
